@@ -31,17 +31,17 @@ export default function ProfilePage(){
             setSaved(true)
         }
     }
-    function handleFileChange(e){
+
+    async function handleFileChange(e){
         const files = e.target.files;
         if(files?.length === 1){
             const data = new FormData;
             data.set('file',files[0]);
-            await fetch('/api/upload'{
+            await fetch('/api/upload',{
                 method: 'POST',
-                body: data
+                body: data,
                 
-            }),
-                
+            })
         }
     }
     if (status === 'loading'){
@@ -74,7 +74,7 @@ export default function ProfilePage(){
                 <div className="flex gap-4 items-center">
                     <div>
                         <div className=" p-2 rounded-lg relative">
-                            <Image className="rounded-lg w-full h-full" src={'/logo.png'} width={250} height={250} alt={'avatar'}/>
+                            <Image className="rounded-lg w-full h-full" src={userName} width={250} height={250} alt={'avatar'}/>
                             <label >
                                 <input type="file"  className="hidden" onChange={handleFileChange}/>
                                 <span className="block border rounded-lg p-2 text-center border-brown cursor-pointer">Editar</span>
