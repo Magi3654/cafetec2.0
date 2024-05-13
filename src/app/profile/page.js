@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import{useSession} from "next-auth/react";
 
@@ -29,7 +29,7 @@ export default function ProfilePage(){
                     setCity(data.city);
                     setCountry(data.country);
                 })
-            })
+            });
         }
     }, [session, status]);
 

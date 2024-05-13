@@ -17,8 +17,10 @@ const UserSchema = new Schema({
     country: {type: String},*/
 }, {timestamps: true});
 
-UserSchema.pre('save', (next, ...rest) => {
-    console.log(rest);
-    next()
+UserSchema.post('validate', function (user) {
+    const notHashedPassword = user.password;
+    const salt = bcrypt.genSaltSync(10);
+    user.password = bcrypt.hashSync(notHashedPassword, salt);
 })
+
 export const User = models?.User || model('User', UserSchema);
