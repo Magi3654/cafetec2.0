@@ -9,27 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@auth/mongodb-adapter": "^3.1.0",
-=======
-<<<<<<< HEAD
-=======
->>>>>>> fcab3f8299fe34dde6d165844d548c634d0c41f3
     "bcrypt": "^5.1.1",
     "mongodb": "^6.6.1",
     "mongoose": "^8.3.4",
->>>>>>> 5e5fdcfbf769ada710dfe923b87ec43e9f5f60be
     "next": "14.2.3",
     "next-auth": "^4.24.7",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hot-toast": "^2.4.1"
   },
   "devDependencies": {
-<<<<<<< HEAD
-=======
     "@types/node": "20.12.11",
     "@types/react": "18.3.2",
->>>>>>> 5e5fdcfbf769ada710dfe923b87ec43e9f5f60be
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
