@@ -5,17 +5,7 @@ import Link from "next/link";
 export default function(){
     const session = useSession();
     console.log(session);
-<<<<<<< HEAD
     const status = session.status;
-=======
-    const status = session?.status;
-    const userData = session.data?.user;
-    let userName = userData?.name || userData?.email;
-
-    if (userName && userName.includes('')){
-        userName = userName.split('')[0];
-    }
->>>>>>> 947dc43b9c8003efba38de4e461f7e817c04e67e
 
     return(
         <header className="flex items-center justify-between">
