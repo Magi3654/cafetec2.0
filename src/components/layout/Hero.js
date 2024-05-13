@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Arrow from "../icons/arrow";
+import Arrow from "../icons/Arrow";
 
 export default function Hero(){
     return(
