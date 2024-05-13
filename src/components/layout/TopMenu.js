@@ -1,4 +1,5 @@
 import Image from "next/image";
+import MenuItem from "./menu/MenuItem";
 
 export default function TopMenu(){
     return(
@@ -11,13 +12,10 @@ export default function TopMenu(){
                 <h2 className="text-darkGray font-semibold text-2xl">
                     Elije tu antojo
                 </h2>
-                <div className="gird grid-cols-3 gap-4"> 
-                    <div className="bg-babyYellow p-4 rounded-lg text-center" >
-                        <img src="" alt="cheetos"/>
-                        <h4>Cheetos</h4>
-                        <p className="">125gr "Descripcion"
-                        </p>
-                    </div>
+                <div className="grid grid-cols-3 gap-4"> 
+                    <MenuItem/>
+                    <MenuItem/>
+                    <MenuItem/>
                 </div>
             </div>
         </section>
