@@ -7,6 +7,7 @@ export default function ProfilePage(){
     
     const session = useSession();
     const[userName, setUserName]= useState('');
+    const[image, setImage]= useState('');
     const [saved, setSaved]= useState(false);
     const [isSaving, setIsSaving]= useState(false);
     const {status} = session;
@@ -14,6 +15,7 @@ export default function ProfilePage(){
     useEffect(()=>{
         if(status === 'authenticated'){
             setUserName(session.data.user.name);
+            setImage(session.data.user.image);
         }
     }, [status, session]);
 
@@ -24,7 +26,7 @@ export default function ProfilePage(){
         const response = await fetch('/api/profile',{
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringfy({name:userName}),
+            body: JSON.stringfy({name:userName,image}),
         });
         setIsSaving(false);
         if (response.ok){
@@ -37,11 +39,13 @@ export default function ProfilePage(){
         if(files?.length === 1){
             const data = new FormData;
             data.set('file',files[0]);
-            await fetch('/api/upload',{
+            const response = await fetch('/api/upload',{
                 method: 'POST',
                 body: data,
                 
-            })
+            });
+            const link = await response.json();
+            setImage(link)
         }
     }
     if (status === 'loading'){
@@ -50,7 +54,7 @@ export default function ProfilePage(){
     if (status === 'unauthnticated'){
         return redirect ('/login');
     } 
-    const userImage = session.data.user.image;
+
 
 
     return(
@@ -73,8 +77,13 @@ export default function ProfilePage(){
                 }
                 <div className="flex gap-4 items-center">
                     <div>
-                        <div className=" p-2 rounded-lg relative">
-                            <Image className="rounded-lg w-full h-full" src={userName} width={250} height={250} alt={'avatar'}/>
+                        <div className=" p-2 rounded-lg relative max-w[120px]">
+                            {
+                                image&&(
+                                    <Image className="rounded-lg w-full h-full" src={image} 
+                                    width={250} height={250} alt={'avatar'}/>
+                                
+                            )}
                             <label >
                                 <input type="file"  className="hidden" onChange={handleFileChange}/>
                                 <span className="block border rounded-lg p-2 text-center border-brown cursor-pointer">Editar</span>
