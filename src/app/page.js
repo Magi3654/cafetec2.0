@@ -5,7 +5,6 @@ import TopMenu from "@/components/layout/TopMenu";
 export default function Home() {
   return (
     <>
-    <Header/>
     <Hero/>
     <TopMenu/>
     </>
