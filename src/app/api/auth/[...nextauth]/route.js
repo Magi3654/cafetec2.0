@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt"
 import * as mongoose from "mongoose"
 import clientPromise from "@/libs/mongoConnect";
 import {User} from "@/models/User"
@@ -31,7 +31,7 @@ const handler = NextAuth({
             const password = credentials?.password;
             
             mongoose.connect(process.env.MONGO_URL);
-            const user = User.findOne({email});
+            const user = await User.findOne({email});
             const passwordOk = user && bcrypt.compareSync(password, user.password) 
 
             console.log({password});
