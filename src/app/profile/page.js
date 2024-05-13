@@ -3,18 +3,35 @@ import Image from "next/image";
 import { useState } from "react";
 import { redirect } from "next/navigation";
 import{useSession} from "next-auth/react";
+
 export default function ProfilePage(){
     
     const session = useSession();
-    const[userName, setUserName]= useState(session.data.user.name||'')
+    const [userName, setUserName]= useState('')
+    const [image, setImage] = useState('');
+    const [phone, setPhone] = useState('');
+    const [streetAddress, setStreetAddress] = useState('');
+    const [postalCode, setpostalCode] = useState('');
+    const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
     const {status} = session;
 
     useEffect(()=>{
         if(status === 'authenticated'){
             setUserName(session.data.user.name);
             setImage(session.data.user.image);
+
+            fetch('/api/profile').then(response => {
+                response.json().then(data => {
+                    setPhone(data.phone);
+                    setStreetAddress(data.streetAddress);
+                    setpostalCode(data.postalCode);
+                    setCity(data.city);
+                    setCountry(data.country);
+                })
+            })
         }
-    }, [sessioon, status]);
+    }, [session, status]);
 
     async function handleProfileInfoUpdate(e){
         e.preventDefault();
@@ -47,10 +64,42 @@ export default function ProfilePage(){
                             <button type="button">Editar Perfil</button>
                         </div>
                     </div>
-                    <form className="grow" onSubmit={'handleProfileInfoUpdate'}>
+
+                    <form className="grow" onSubmit={handleProfileInfoUpdate}>
+                        <label className="my-2">Nombre Completo</label>
                         <input type="text" placeholder="Nombre Completo" 
-                        value={userName} onChange={e=> setUserName(e.target.value)}/>
-                        <input type="email"  disabled={true} value={"session.data.user.email"}></input>
+                            value={userName} onChange={ev => setUserName(ev.target.value)}/>
+
+                        <label className="my-2">Email</label>
+                        <input type="email" disabled={true}
+                            value={session.data.user.email} placeholder="email"></input>
+
+                        <label className="my-2">Phone Number</label>
+                        <input type="tel" disabled={true}
+                            value={phone} placeholder="Phone Number" onChange={ev => setPhone(ev.target.value)}></input>
+
+                        <label className="my-2">Street Address</label>
+                        <input type="text" disabled={true}
+                            value={streetAddress} placeholder="Street Address" onChange={ev => setStreetAddress(ev.target.value)}></input>
+                            
+                        <div className="flex gap-2">
+                            <div>
+                                <label className="my-2">Postal Code</label>
+                                <input type="text" disabled={true}
+                                    value={postalCode} placeholder="Postal Code" onChange={ev => setpostalCode(ev.target.value)}></input>
+                            </div>
+
+                            <div>
+                                <label className="my-2">City</label>
+                                <input type="text" disabled={true}
+                                    value={city} placeholder="City" onChange={ev => setCity(ev.target.value)}></input>
+                            </div>
+                        </div>
+
+                        <label className="my-2">Country</label>
+                        <input type="text" disabled={true}
+                            value={country} placeholder="Country" onChange={ev => setCountry(ev.target.value)}></input>
+
                         <button type="submit">Guardar cambios</button>
                     </form>
                 </div>
