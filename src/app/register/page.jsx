@@ -51,6 +51,7 @@ export default function RegisterPage() {
                     An error has occurred.<br/> Please try again later
                 </div>
             )}
+
             <form className="flex flex-col mx-20" onSubmit={handleFormSubmit}>
 
                 <input type="email" placeholder="email" className="rounded-md bg-gray py-2 px-4 m-2" value={email} disabled={creatingUser} onChange={ev => setEmail(ev.target.value)}></input>
@@ -65,6 +66,7 @@ export default function RegisterPage() {
                     <Image src={'/google.png'} alt={''} width={24} height={24} className="pt-1"></Image>
                     Login with Google
                 </button>
+                
                 <div className="text-center my-4 text-darkGray border-t pt-4">Existing account? <Link href={'/login'} className="underline">Login here</Link></div>
             </form>
         </section>
