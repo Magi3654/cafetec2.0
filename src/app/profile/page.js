@@ -1,15 +1,20 @@
 'use client'
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { redirect } from "next/navigation";
 import{useSession} from "next-auth/react";
+
+
 export default function ProfilePage(){
     
     const session = useSession();
+    console.log(session);
     const[userName, setUserName]= useState('');
     const[image, setImage]= useState('');
     const [saved, setSaved]= useState(false);
     const [isSaving, setIsSaving]= useState(false);
+    const [isUploading, setIsUploading] = useState(false);
+
     const {status} = session;
 
     useEffect(()=>{
@@ -17,7 +22,7 @@ export default function ProfilePage(){
             setUserName(session.data.user.name);
             setImage(session.data.user.image);
         }
-    }, [status, session]);
+    }, [sessioon, status]);
 
     async function handleProfileInfoUpdate(e){
         e.preventDefault();
@@ -39,6 +44,7 @@ export default function ProfilePage(){
         if(files?.length === 1){
             const data = new FormData;
             data.set('file',files[0]);
+            setIsUploading(true);
             const response = await fetch('/api/upload',{
                 method: 'POST',
                 body: data,
@@ -46,6 +52,7 @@ export default function ProfilePage(){
             });
             const link = await response.json();
             setImage(link)
+            setIsUploading(false)
         }
     }
     if (status === 'loading'){
@@ -75,6 +82,11 @@ export default function ProfilePage(){
                 )
 
                 }
+                {
+                    isSaving &&(
+                        <h2 className="text-center bg-green-100 p-4 rounded-lg border border-green-300 ">Actualizando...</h2>
+                    )
+                }
                 <div className="flex gap-4 items-center">
                     <div>
                         <div className=" p-2 rounded-lg relative max-w[120px]">
@@ -91,10 +103,10 @@ export default function ProfilePage(){
         
                         </div>
                     </div>
-                    <form className="grow" onSubmit={'handleProfileInfoUpdate'}>
+                    <form className="grow" onSubmit={handleProfileInfoUpdate}>
                         <input type="text" placeholder="Nombre Completo" 
                         value={userName} onChange={e=> setUserName(e.target.value)}/>
-                        <input type="email"  disabled={true} value={"session.data.user.email"}></input>
+                        <input type="email"  disabled={true} value={'session.data.user.email'}></input>
                         <button type="submit">Guardar cambios</button>
                     </form>
                 </div>
