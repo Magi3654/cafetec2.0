@@ -6,8 +6,7 @@ import Link from "next/link";
 
 
 export default function Header(){
-   
-    /*//const session = useSession();
+const session = useSession();
 =======
 'use client'
 import {signOut, useSession} from "next-auth/react";
@@ -20,7 +19,7 @@ export default function(){
     const status = session.status;
 
 =======
-    /* logica de profile 
+     logica de profile 
     const session = useSession();
 >>>>>>> 832392e4bd09e86b6117dde34870a572435d4ee0
     const status = session?.status;
@@ -30,7 +29,7 @@ export default function(){
     if (userName && userName.includes('')){
         userName = userName.split('')[0];
     }
-*/
+
 >>>>>>> fcab3f8299fe34dde6d165844d548c634d0c41f3
     return(
         <header className="flex items-center justify-between">
