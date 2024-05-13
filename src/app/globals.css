@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type="email"]
+input[type="password"]
+input[type="text"]{
+    @apply block w-full my-2 rounded-xl;
+    @apply border p-2 border-lightBrown bg-brown;
+}
+
+input[type="email"]:disabled
+input[type="password"]:disabled
+input[type="text"]:disabled{
+    @apply bg-lightBrown cursor-not-allowed;
+    
+}
+button{
+    @apply block w-full text-brown font-semibold;
+    @apply border border-lightBrown rounded-xl px-6 py-2;
+}
+button[type="submit"], .submit{
+    @apply border-0 bg-brown text-white;
+}
+button [type="submit"]:disabled, .submit.submit:disabled{
+    @apply cursor-not-allowed bg-yellow;
+}
+
