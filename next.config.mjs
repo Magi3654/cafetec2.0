@@ -7,6 +7,10 @@ const nextConfig = {
               hostname: '*.googleusercontent.com',
           
             },
+            {
+                protocol: 'https',
+                hostname: 'cafetec.s3.amazonaws.com'
+            }
           ],
     }
 };
