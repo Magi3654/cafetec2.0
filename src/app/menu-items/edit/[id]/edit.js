@@ -10,7 +10,6 @@ import { use, useEffect, useState } from "react";
 import toast from "react-hot-toast"
 
 export default function EditMenuItemPage(){
-// lo mismo que en Page 
     const {id} = useParams();
     const [image, setImage] = useState('');
     const [name, setName] = useState('');
