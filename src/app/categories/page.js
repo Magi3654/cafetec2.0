@@ -66,14 +66,15 @@ export default function CategoriesPage(){
                 </div>
             </form>
 
-            <ul>
+            <div>
+                <h2 className="mt-8">Edit category:</h2>
                 {categories?.length > 0 && categories.map(c => {
-                    <div className="bg-gray-200 rounded-xl p-2 px-4 flex gap-1">
+                    <div className="bg-gray rounded-xl p-2 px-4 flex gap-1">
                         <span className="text-semiGray">Edit category:</span>
                         <span>{c.name}</span>
                     </div>
                 })}
-            </ul>
+            </div>
         </section>
     )
 }

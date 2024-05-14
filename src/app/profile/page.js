@@ -13,11 +13,11 @@ import { set } from "mongoose";
 export default function ProfilePage(){
     
     const session = useSession();
-    const [userName, setUserName]= useState('')
+    const [userName, setUserName] = useState('')
     const [image, setImage] = useState('');
     const [phone, setPhone] = useState('');
     const [country, setCountry] = useState('');
-    const [isAdmin, setIsAdmin]=useState(false)
+    const [isAdmin, setIsAdmin] = useState(false)
     const [profileFetched, setProfileFetched]=useState(false)    
     const {status} = session;
 
@@ -137,13 +137,13 @@ export default function ProfilePage(){
                         <div className="flex flex-col m-1">
 
                             <label className="my-2 mr-3 font-semibold">Phone Number</label>
-                            <input type="tel" disabled={true} className="rounded-md bg-gray py-2 px-4 my-2"
+                            <input type="tel" className="rounded-md bg-gray py-2 px-4 my-2"
                                 value={phone} placeholder="Phone Number" onChange={ev => setPhone(ev.target.value)}></input>
                         </div>
 
                         <div className="flex flex-col m-1">
                             <label className="my-2 mr-3 font-semibold">Country</label>
-                            <input type="text" disabled={true} className="rounded-md bg-gray py-2 px-4 my-2"
+                            <input type="text" className="rounded-md bg-gray py-2 px-4 my-2"
                                 value={country} placeholder="Country" onChange={ev => setCountry(ev.target.value)}></input>
                         </div>
 
