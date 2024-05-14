@@ -1,20 +1,17 @@
 'use client'
 import { useEffect, useState } from "react";
 import UserTabs from "../../components/layout/UserTabs";
+import { UseProfile } from "../../components/UseProfile";
 
 export default function CategoriesPage(){
-    const [isAdmin, setIsAdmin]=useState(false)
-    useEffect(()=>{
-       fetch('/api/profile').then(response=>{
-        response.json().then(data=>{
-            setIsAdmin(data.admin);
+    const {loading:profileLoading, data:profileData} = UseProfile();
 
-        })
-       }) 
-    },[])
+    if (profileLoading) {
+        return 'Loading user info...'
+    }
 
-    if (!isAdmin){
-        return 'No eres Administrador'
+    if (!profileData.admin) {
+        return 'Not an admin'
     }
 
     return(
