@@ -55,9 +55,9 @@ export default function CategoriesPage(){
             <UserTabs isAdmin={true}/>
             <form className="mt-8" onSubmit={handleNewCategorySubmit}>
                 <div className="flex gap-2 items-end">
-                    <div className="grow">
-                        <label>New Category Name</label>
-                        <input type="text" value={newCategoryName} onChange={ev => setNewCategoryName(ev.target.value)}></input>
+                    <div className="flex flex-col grow">
+                        <label className="text-sm font-semibold">New Category Name</label>
+                        <input type="text" className="rounded-md bg-gray py-2 px-4 my-2" value={newCategoryName} placeholder="Category name" onChange={ev => setNewCategoryName(ev.target.value)}></input>
                     </div>
 
                     <div className="pb-2">

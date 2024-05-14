@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     password: {type: String},
     image: {type: String},
     country: {type: String},
-    admin: {type:Boolean, default: false},
+    admin: {type:Boolean, default: false}, // Admin se define en mongoDB
 }, {timestamps: true});
 
 UserSchema.post('validate', function (user) {

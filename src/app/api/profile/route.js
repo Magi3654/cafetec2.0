@@ -3,8 +3,6 @@ import {User} from "@/models/User";
 import mongoose from "mongoose";
 import {UserInfo} from "@/models/UserInfo"
 import {getServerSession} from "next-auth"
-//import { userInfo } from "os";
-//import{ UserInfo } from "@/models/UderInfo"
 
 
 export async function PUT(req){
