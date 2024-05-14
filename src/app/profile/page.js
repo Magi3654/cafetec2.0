@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { resolve } from "path";
 import { rejects } from "assert";
+import toast from "react-hot-toast";
 import Link from "next/link";
 import UserTabs from "../../components/layout/UserTabs";
 import { set } from "mongoose";
@@ -85,12 +86,12 @@ export default function ProfilePage(){
                 }
                 throw new Error('Something went wrong');
             });
-
+            
             await toast.promise(uploadPromise, {
                 uploading: 'Uploading...',
                 success: 'Upload complete',
                 error: 'Upload error',
-            })
+            });
         }
     }
 
