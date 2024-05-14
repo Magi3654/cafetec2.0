@@ -22,6 +22,7 @@ export const authOptions = {
             username: { label: "Email", type: "email", placeholder: "test@example.com" },
             password: { label: "Password", type: "password" }
           },
+
           
           async authorize(credentials, req) {
             const email = credentials?.email;
@@ -29,9 +30,18 @@ export const authOptions = {
             
             mongoose.connect(process.env.MONGO_URL);
             const user = await User.findOne({email});
-            const passwordOk = user && bcrypt.compareSync(password, user.password) 
+            console.log('correo encontrado')
+
+            const salt = bcrypt.genSaltSync(10);
+            
+            const hashPassword = bcrypt.hashSync(password.toString(), salt);
+            console.log("hashusuario " + hashPassword)
+            console.log("hashbasededatos "+ user.password)
+            const passwordOk = user && bcrypt.compareSync(hashPassword, user.password) 
+            console.log(passwordOk)
 
             console.log({password});
+            console.log(user.password)
 
             if (passwordOk) {
               return user;
