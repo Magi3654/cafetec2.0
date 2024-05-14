@@ -5,6 +5,9 @@ import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { resolve } from "path";
 import { rejects } from "assert";
+import Link from "next/link";
+import UserTabs from "../../components/layout/UserTabs";
+import { set } from "mongoose";
 
 export default function ProfilePage(){
     
@@ -13,6 +16,8 @@ export default function ProfilePage(){
     const [image, setImage] = useState('');
     const [phone, setPhone] = useState('');
     const [country, setCountry] = useState('');
+    const [isAdmin, setIsAdmin]=useState(false)
+    const [profileFetched, setProfileFetched]=useState(false)    
     const {status} = session;
 
     useEffect(()=>{
@@ -24,6 +29,8 @@ export default function ProfilePage(){
                 response.json().then(data => {
                     setPhone(data.phone);
                     setCountry(data.country);
+                    setIsAdmin(data.admin);
+                    setProfileFetched(true);
                 })
             });
         }
@@ -87,7 +94,7 @@ export default function ProfilePage(){
         }
     }
 
-    if (status === 'loading'){
+    if (status === 'loading' || !profileFetched){
         return 'Cargando...';
     }
     if (status === 'unauthenticated'){
@@ -97,10 +104,9 @@ export default function ProfilePage(){
 
     return(
         <section className="mt-8">
-            <h1 className="text-center text-yellow text-4xl mb-4">
-                Perfil
-            </h1>
-            <div className="max-w-md mx-auto ">
+            <UserTabs isAdmin={isAdmin}/>
+            
+            <div className="max-w-md mx-auto mt-8 ">
                 <div className="flex gap-4 items-center">
                     <div>
                         <div className=" p-2 rounded-lg relative max-w-[120px]">
