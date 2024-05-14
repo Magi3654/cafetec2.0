@@ -16,19 +16,18 @@ export default function MenuItemsPage(){
         const data = {image, name, description,basePrice}
         fetch('/api/menu-items', {
             method: 'POST',
-            body: JSON.stringify({
-                image, name, description,basePrice 
-            })
+            body: JSON.stringify(data),
+            headers: {'Content-Type': 'application/json'}
         })
     }
 
     if(loading){
         return 'Cargando Usuario';
     }
-
     if(!data.admin){
         return 'No eres administracion'; 
     }
+    
 
     return(
         <section className="mt-8 max-x-md mx-auto">

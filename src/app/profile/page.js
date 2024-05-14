@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import UserTabs from "../../components/layout/UserTabs";
 import { set } from "mongoose";
+import EditableImage from "@/components/layout/EditableImage";
 
 export default function ProfilePage(){
     
