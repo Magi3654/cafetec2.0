@@ -1,6 +1,7 @@
 'use client'
 import {signOut, useSession} from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function(){
     const session = useSession();
@@ -16,12 +17,13 @@ export default function(){
 
     return(
         <header className="flex items-center justify-between">
+            <Image src={'/logo.png'} height={75} width={75} className="flex-none" alt={'logo'}/>
             <Link className="text-brown font-semibold text-2xl" href={'/'}>
                 cafetec
             </Link>
-            <nav className="flex items-center gap-4 text-lightBrown font-semibold">
-                <Link href={'/'}>Home</Link>
-                <Link href={''}>Menu</Link>
+            <nav className="text-center items-center gap-4 text-lightBrown font-semibold">
+                <Link className='mx-2' href={'/'}>Home</Link>
+                <Link className='mx-2' href={''}>Menu</Link>
             </nav>
             <nav className="flex items-center gap-8 font-semibold">
                 {status === 'authenticated' && (
