@@ -62,7 +62,7 @@ export default function RegisterPage() {
                 
                 <div className="my-4 text-center text-darkGray">or login with provider</div>
                 
-                <button onClick={() => signIn('google', {callbackUrl:'/'})} className="flex gap-4 justify-center m-2 py-2 px-4 rounded-md border border-darkGray font-semibold text-lg">
+                <button type="button" onClick={() => signIn('google', {callbackUrl:'/'})} className="flex gap-4 justify-center m-2 py-2 px-4 rounded-md border border-darkGray font-semibold text-lg">
                     <Image src={'/google.png'} alt={''} width={24} height={24} className="pt-1"></Image>
                     Login with Google
                 </button>
