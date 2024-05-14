@@ -17,11 +17,9 @@ export default function(){
 
     return(
         <header className="flex items-center justify-between">
-            <Image src={'/logo.png'} height={75} width={75} className="flex-none" alt={'logo'}/>
-            <Link className="text-brown font-semibold text-2xl" href={'/'}>
-                cafetec
-            </Link>
-            <nav className="text-center items-center gap-4 text-lightBrown font-semibold">
+            <Image src={'/logo.png'} height={90} width={90} className="flex-none" alt={'logo'}/>
+            
+            <nav className="text-center flex-1 items-center gap-4 text-lightBrown font-semibold">
                 <Link className='mx-2' href={'/'}>Home</Link>
                 <Link className='mx-2' href={''}>Menu</Link>
             </nav>
