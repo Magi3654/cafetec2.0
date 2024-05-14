@@ -8,6 +8,7 @@ const UserSchema = new Schema({
     image: {type: String},
     phone: {type: String},
     country: {type: String},
+    admin: {type:Boolean, default: false},
 }, {timestamps: true});
 
 UserSchema.post('validate', function (user) {
