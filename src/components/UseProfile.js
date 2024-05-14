@@ -10,7 +10,7 @@ export function UseProfile() {
             response.json().then(data => {
                 setData(data);
                 setLoading(false)
-            });
+            })
         }) 
     }, []);
 

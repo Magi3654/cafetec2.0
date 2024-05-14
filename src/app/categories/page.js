@@ -6,7 +6,16 @@ import toast from "react-hot-toast";
 
 export default function CategoriesPage(){
     const [newCategoryName, setNewCategoryName] = useState('')
+    const [categories, setCategories] = useState([]);
     const {loading:profileLoading, data:profileData} = UseProfile();
+
+    useEffect(() => {
+        fetch('/api/categories').then(res => {
+            res.json().then(categories => {
+                setCategories(categories);
+            })
+        })
+    }, []);
 
     async function handleNewCategorySubmit(ev) {
         ev.preventDefault();
@@ -56,6 +65,15 @@ export default function CategoriesPage(){
                     </div>
                 </div>
             </form>
+
+            <ul>
+                {categories?.length > 0 && categories.map(c => {
+                    <div className="bg-gray-200 rounded-xl p-2 px-4 flex gap-1">
+                        <span className="text-semiGray">Edit category:</span>
+                        <span>{c.name}</span>
+                    </div>
+                })}
+            </ul>
         </section>
     )
 }

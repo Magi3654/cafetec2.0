@@ -33,7 +33,7 @@ export default function ProfilePage(){
                     setIsAdmin(data.admin);
                     setProfileFetched(true);
                 })
-            });
+            })
         }
     }, [session, status]);
 

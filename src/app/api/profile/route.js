@@ -1,7 +1,7 @@
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import {User} from "@/models/User";
 import mongoose from "mongoose";
-import UserInfo from "@/models/UserInfo"
+import {UserInfo} from "@/models/UserInfo"
 import {getServerSession} from "next-auth"
 //import { userInfo } from "os";
 //import{ UserInfo } from "@/models/UderInfo"
@@ -29,7 +29,9 @@ export async function PUT(req){
     if(!email){
       return Response.json({})
     }
+
     const user = await User.findOne({email}).lean()
     const userInfo = await UserInfo.findOne({email}).lean()
+
     return Response.json({...user,...userInfo})
 }
