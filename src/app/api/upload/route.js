@@ -1,5 +1,5 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import unipid from "uniqid"
+import uniqid from "uniqid"
 
 export async function POST(req){
     const data = await req.formData();
@@ -14,26 +14,31 @@ export async function POST(req){
             }
         });
 
-    const ext =file.name.split('.').slice(-1)[0];
+    const ext = file.name.split('.').slice(-1)[0];
 
-    const newFileName = unipid()+'.'+ext;
+    const newFileName = uniqid() + '.' + ext;
+    console.log(newFileName);
 
     const chunks = [];
 
     for await(const chunk of file.stream()){
         chunks.push(chunk);
     }
+
     const buffer= Buffer.concat(chunks)
 
+    const bucket = 'cafetec';
 
-    s3Client.send(new PutObjectCommand({
+    await s3Client.send(new PutObjectCommand({
         Bucket:'cafetec',
         Key:newFileName,
         ACL: 'public-read',
         ContentType: file.type,
         Body: buffer,
     }));
-        return Response.json('https://cafetec.s3.amazonaws.com/'+newFileName)
+    
+    return Response.json('https://cafetec.s3.amazonaws.com/' + newFileName)
     }
+
     return Response.json(true);
 }

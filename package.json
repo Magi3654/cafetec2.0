@@ -19,7 +19,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
-    "unified": "^11.0.4"
+    "unified": "^11.0.4",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
