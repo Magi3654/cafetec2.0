@@ -3,15 +3,11 @@ import MenuItem from "./menu/MenuItem";
 
 export default function TopMenu(){
     return(
-        <section className="">
-    
-            <div className="text-center">
-                <h3 className=" text-brown font-bold text-4xl leading-12 ">
-                    Lo mas popular
+        <section className="flex border-t border-gray">
+            <div className="text-justify">
+                <h3 className="font-bold text-2xl my-2 leading-12 ">
+                    Lo más popular
                 </h3>
-                <h2 className="text-darkGray font-semibold text-2xl">
-                    Elije tu antojo
-                </h2>
                 <div className="grid grid-cols-3 gap-4"> 
                     <MenuItem/>
                     <MenuItem/>
