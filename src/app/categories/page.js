@@ -26,14 +26,20 @@ export default function CategoriesPage(){
     async function handleCategorySubmit(ev) {
         ev.preventDefault();
         const creationPromise = new Promise(async (resolve, reject) => {
+            const data = {name:categoryName};
+
+            if (editedCategory) {
+                data._id = editedCategory._id;
+            }
             const response = await fetch('/api/categories', {
-                method: 'POST',
+                method: editedCategory ? 'PUT' : 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({name:categoryName}),
+                body: JSON.stringify(data),
             });
 
             setCategoryName('');
             fetchCategories();
+            setEditedCategory(null);
 
             if (response.ok) {
                 resolve()
@@ -45,8 +51,12 @@ export default function CategoriesPage(){
         });
 
         await toast.promise(creationPromise, {
-            loading: 'Creating your new category...',
-            success: 'Category created',
+            loading: editedCategory
+                        ? 'Updating category...'
+                        : 'Creating your new category...',
+            success: editedCategory
+                        ? 'Category update'
+                        : 'Category created',
             error: 'Error, sorry...'
         });
     }
@@ -83,16 +93,16 @@ export default function CategoriesPage(){
             </form>
 
             <div>
-                <h2 className="mt-8">Edit category:</h2>
-                {categories?.length > 0 && categories.map(c => {
+                <h2 className="mt-8 mb-2 font-semibold text-sm">Edit category:</h2>
+                {categories?.length > 0 && categories.map(c => (
                     <button onClick={() => {
                         setEditedCategory(c);
                         setCategoryName(c.name)
                         }}
-                        className="bg-gray rounded-lg p-2 px-4 flex gap-1 cursor-pointer mb-1">
-                        <span>{c.name}</span>
+                        className="bg-gray border-semiGray shadow-md rounded-md p-2 px-4 flex gap-1 cursor-pointer mb-2">
+                        <span className="text-sm font-medium text-black">{c.name}</span>
                     </button>
-                })}
+                ))}
             </div>
         </section>
     )
