@@ -33,8 +33,8 @@ export default function NewMenuItemsPage(){
         });
 
         await toast.promise(savingPromise, {
-            loading: 'Saving item...',
-            success: 'Saved',
+            loading: 'Guardando producto...',
+            success: 'Producto guardado',
             error: 'Error',
         });
 
@@ -46,7 +46,7 @@ export default function NewMenuItemsPage(){
     }
     
     if(loading){
-        return 'Cargando Usuario...';
+        return 'Cargando información de usuario...';
     }
 
     if(!data.admin){

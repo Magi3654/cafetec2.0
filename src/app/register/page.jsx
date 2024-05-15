@@ -38,7 +38,7 @@ export default function RegisterPage() {
 
     return (
         <section className="mt-8">
-            <h1 className="text-center text-2xl font-bold my-2">Register</h1>
+            <h1 className="text-center text-2xl font-bold my-2">Crea una cuenta</h1>
             
             {userCreated && (
                 <div className="my-4 text-center">
@@ -52,22 +52,29 @@ export default function RegisterPage() {
                 </div>
             )}
 
-            <form className="flex flex-col mx-20" onSubmit={handleFormSubmit}>
+            <form className="flex flex-col mx-8" onSubmit={handleFormSubmit}>
 
-                <input type="email" placeholder="email" className="rounded-md bg-gray py-2 px-4 m-2" value={email} disabled={creatingUser} onChange={ev => setEmail(ev.target.value)}></input>
+                <label className="font-semibold text-sm">Correo electrónico</label>
+                <input type="email" placeholder="correo electrónico" className="rounded-md bg-gray py-2 px-4 my-2" value={email} disabled={creatingUser} onChange={ev => setEmail(ev.target.value)}></input>
 
-                <input type="password" placeholder="password" className="rounded-md bg-gray py-2 px-4 m-2" value={password} disabled={creatingUser} onChange={ev => setPassword(ev.target.value)}></input>
+                <label className="font-semibold text-sm mt-4">Contraseña</label>
+                <input type="password" placeholder="contraseña" className="rounded-md bg-gray py-2 px-4 my-2" value={password} disabled={creatingUser} onChange={ev => setPassword(ev.target.value)}></input>
 
-                <button type="submit" className="m-2 py-2 px-4 rounded-md bg-yellow text-white font-semibold text-xl" disabled={creatingUser}>Register</button>
+                <button type="submit" className="my-4 py-2 px-4 rounded-md bg-yellow text-white font-semibold text-xl" disabled={creatingUser}>Registrarse</button>
                 
-                <div className="my-4 text-center text-darkGray">or login with provider</div>
+                <div className="my-4 text-center text-darkGray">o</div>
                 
-                <button type="button" onClick={() => signIn('google', {callbackUrl:'/'})} className="flex gap-4 justify-center m-2 py-2 px-4 rounded-md border border-darkGray font-semibold text-lg">
+                <button type="button" onClick={() => signIn('google', {callbackUrl:'/'})} className="flex gap-4 justify-center my-4 py-2 px-4 rounded-md border border-darkGray font-semibold text-lg">
                     <Image src={'/google.png'} alt={''} width={24} height={24} className="pt-1"></Image>
-                    Login with Google
+                    Inicio con Google
                 </button>
                 
-                <div className="text-center my-4 text-darkGray border-t pt-4">Existing account? <Link href={'/login'} className="underline">Login here</Link></div>
+                <div className="text-center my-4 text-darkGray border-t pt-4">
+                    <span className="font-light">¿Ya tienes una cuenta?</span>
+                    <Link href={'/login'} className="underline mx-2 text-bold">
+                        Inicia sesión aquí
+                    </Link>
+                </div>
             </form>
         </section>
     );

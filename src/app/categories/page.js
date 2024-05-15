@@ -52,21 +52,21 @@ export default function CategoriesPage(){
 
         await toast.promise(creationPromise, {
             loading: editedCategory
-                        ? 'Updating category...'
-                        : 'Creating your new category...',
+                        ? 'Actualizando categoría...'
+                        : 'Creando nueva categoría...',
             success: editedCategory
-                        ? 'Category update'
-                        : 'Category created',
-            error: 'Error, sorry...'
+                        ? 'Categoría actualizada'
+                        : 'Categoría creada',
+            error: 'Error'
         });
     }
 
     if (profileLoading) {
-        return 'Loading user info...'
+        return 'Cargando información de usuario...'
     }
 
     if (!profileData.admin) {
-        return 'Not an admin'
+        return 'No eres administrador.'
     }
 
     return(
