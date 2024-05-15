@@ -7,7 +7,7 @@ export async function POST(req){
         const file = data.get('file');
 
         const s3Client = new S3Client({
-            region:'us-east-1',
+            region:'us-east-2',
             credentials:{
                 accessKeyId:process.env.AWS_ACCESS_KEY,
                 secretAccessKey:process.env.AWS_SECRET_KEY,
@@ -30,14 +30,16 @@ export async function POST(req){
     const bucket = 'cafetec';
 
     await s3Client.send(new PutObjectCommand({
-        Bucket:'cafetec',
-        Key:newFileName,
+        Bucket: bucket,
+        Key: newFileName,
         ACL: 'public-read',
         ContentType: file.type,
         Body: buffer,
     }));
     
-    return Response.json('https://cafetec.s3.amazonaws.com/' + newFileName)
+    const link = 'https://' + bucket + '.s3.amazonaws.com/' + newFileName;
+
+    return Response.json(link)
     }
 
     return Response.json(true);
