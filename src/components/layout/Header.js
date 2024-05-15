@@ -27,14 +27,14 @@ export default function(){
                 {status === 'authenticated' && (
                     <>
                         <Link href={'/profile'} className="text-sm whitespace-nowrap">Hello, {userName}!</Link>
-                        <button onClick={() => signOut()} className="bg-yellow rounded-full text-white px-6 py-2">Cerrar sesión</button>
+                        <button onClick={() => signOut()} className="border border-gray shadow-md bg-yellow rounded-full text-white px-6 py-2">Cerrar sesión</button>
                     </>
                 )}
 
                 {status === 'unauthenticated' && (
                     <>
                         <Link href={'/login'}>Iniciar sesión</Link>
-                        <Link href={'/register'} className="bg-yellow rounded-full text-white px-6 py-2">Registrarse</Link>
+                        <Link href={'/register'} className="border border-gray shadow-md bg-yellow rounded-full text-white px-6 py-2">Registrarse</Link>
                     </>
                 )}
             </nav>

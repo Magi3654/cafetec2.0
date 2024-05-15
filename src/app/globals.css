@@ -17,8 +17,13 @@ input[type="text"]:disabled{
 }
 button, .button {
     @apply flex w-full justify-center gap-2 font-semibold;
-    @apply border border-gray shadow-md rounded-xl px-6 py-2;
+    @apply rounded-xl px-6 py-2;
 }
+
+.chevron {
+    @apply inline-flex p-1 border-0 justify-start;
+}
+
 button[type="submit"], .submit{
     @apply border-0 bg-lightBrown text-white;
 }
