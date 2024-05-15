@@ -100,7 +100,7 @@ export default function CategoriesPage(){
                         setCategoryName(c.name)
                         }}
                         className="bg-gray border-semiGray shadow-md rounded-md p-2 px-4 flex gap-1 cursor-pointer mb-2">
-                        <span className="text-sm font-normal text-darkGray">{c.name}</span>
+                        <span className="text-sm font-normal text-black">{c.name}</span>
                     </button>
                 ))}
             </div>

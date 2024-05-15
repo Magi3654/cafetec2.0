@@ -1,5 +1,6 @@
 'use client'
 import Left from '@/components/icons/Left'
+import MenuItemForm from "@/components/layout/MenuItemForm";
 import EditableImage from "@/components/layout/EditableImage";
 import UserTabs from "@/components/layout/UserTabs";
 import { UseProfile } from "@/components/UseProfile";
@@ -9,17 +10,12 @@ import { useState } from "react";
 import toast from "react-hot-toast"
 
 export default function NewMenuItemsPage(){
+
     const {loading, data} = UseProfile();
-    const [image, setImage] = useState('');
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [basePrice, setBasePrice] = useState('');
     const [redirectToItems, setRedirectToItems] = useState(false)
 
-    async function handleFormSubmit(ev) {
+    async function handleFormSubmit(ev, data) {
         ev.preventDefault();
-
-        const data = {image, name, description, basePrice,};
 
         const savingPromise = new Promise(async (resolve, reject) => {
             const response = await fetch('/api/menu-items', {
@@ -67,26 +63,7 @@ export default function NewMenuItemsPage(){
                     <span>Show All Menu Items</span>
                 </Link>
             </div>
-            <form className="mt-8 mx-8" onSubmit={handleFormSubmit}>
-                <div className="grid items-start gap-4" style={{gridTemplateColumns: '.3fr .7fr'}}>
-                    <div>
-                        <EditableImage link={image} setLink={setImage}/>
-                    </div>
-
-                    <div className="grow flex flex-col">
-                        <label className="font-semibold text-sm">Nombre del elemento</label>
-                        <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2" value={name} onChange={ev => setName(ev.target.value)}/>
-                        
-                        <label className="font-semibold text-sm">Descripcion</label>
-                        <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2" value={description} onChange={ev => setDescription(ev.target.value)}/>
-                        
-                        <label className="font-semibold text-sm">Precio</label>
-                        <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2" value={basePrice} onChange={ev => setBasePrice(ev.target.value)}/>
-                        
-                        <button className="mb-2" type="submit">Guardar</button>
-                    </div>
-                </div>
-            </form>
+            <MenuItemForm/>
         </section>
     )
 }
