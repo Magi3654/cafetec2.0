@@ -8,10 +8,24 @@ import toast from "react-hot-toast";
 
 export default function MenuItemsPage(){
     const [image, setImage] = useState('');
-    const [name,setName] = useState('');
+    const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [basePrice, setPrice] = useState('');
+    const [basePrice, setBasePrice] = useState('');
     const {loading, data} = UseProfile()
+
+    async function handleFormSubmit(ev) {
+        ev.preventDefault();
+
+        const data = {
+            image, name, description, basePrice,
+        }
+        fetch('/api/menu-items', {
+            method: 'POST',
+            body: JSON.stringify({
+                
+            })
+        })
+    }
 
     if(loading){
         return 'Loading user info...';
@@ -25,7 +39,7 @@ export default function MenuItemsPage(){
     return(
         <section className="mt-8 max-x-md mx-auto">
             <UserTabs isAdmin={true}/>
-            <form className="mt-8 mx-8">
+            <form className="mt-8 mx-8" onSubmit={handleFormSubmit}>
                 <div className="grid items-start gap-4" style={{gridTemplateColumns: '.3fr .7fr'}}>
                     <div>
                         <EditableImage link={image} setLink={setImage}/>
@@ -36,10 +50,10 @@ export default function MenuItemsPage(){
                         <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2" value={name} onChange={ev => setName(ev.target.value)}/>
                         
                         <label className="font-semibold text-sm">Descripcion</label>
-                        <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2" value={description} onChange={ev => setName(ev.target.value)}/>
+                        <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2" value={description} onChange={ev => setDescription(ev.target.value)}/>
                         
                         <label className="font-semibold text-sm">Precio</label>
-                        <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2" value={basePrice} onChange={ev => setName(ev.target.value)}/>
+                        <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2" value={basePrice} onChange={ev => setBasePrice(ev.target.value)}/>
                         
                         <button className="mb-2" type="submit">Guardar</button>
                     </div>
