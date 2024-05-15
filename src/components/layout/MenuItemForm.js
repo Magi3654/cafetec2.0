@@ -3,9 +3,9 @@ import { useState } from "react";
 
 export default function MenuItemForm({onSubmit, menuItem}) {
     const [image, setImage] = useState(menuItem?.image || '');
-    const [name, setName] = useState(menuItem.name || '');
-    const [description, setDescription] = useState(menuItem.description || '') ;
-    const [basePrice, setBasePrice] = useState(menuItem.basePrice || '');
+    const [name, setName] = useState(menuItem?.name || '');
+    const [description, setDescription] = useState(menuItem?.description || '') ;
+    const [basePrice, setBasePrice] = useState(menuItem?.basePrice || '');
 
     return (
         <form onSubmit={ev => onSubmit(ev, {image, name, description, basePrice})} className="mt-8 max-w-md mx-auto">

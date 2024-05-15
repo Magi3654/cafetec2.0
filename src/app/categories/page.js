@@ -76,24 +76,24 @@ export default function CategoriesPage(){
                 <div className="flex gap-2 items-end">
                     <div className="flex flex-col grow">
                         <label className="text-sm font-semibold">
-                            {editedCategory ? 'Update category' : 'New Category Name'}
+                            {editedCategory ? 'Actualizar categoría' : 'Agregar categoría'}
                             {editedCategory && (
                                 <>: <b>{editedCategory.name}</b></>
                             )}
                         </label>
-                        <input type="text" className="rounded-md bg-gray py-2 px-4 my-2" value={categoryName} placeholder="Category name" onChange={ev => setCategoryName(ev.target.value)}></input>
+                        <input type="text" className="rounded-md bg-gray py-2 px-4 my-2" value={categoryName} placeholder="Nombre de la categoría" onChange={ev => setCategoryName(ev.target.value)}></input>
                     </div>
 
                     <div className="pb-2">
                         <button className="border bg-yellow" type="submit">
-                            {editedCategory ? 'Update' : 'Create'}
+                            {editedCategory ? 'Actualizar' : 'Crear'}
                         </button>
                     </div>
                 </div>
             </form>
 
             <div>
-                <h2 className="mt-8 mb-2 font-semibold text-sm">Edit category:</h2>
+                <h2 className="mt-8 mb-2 font-semibold text-sm">Editar categoría:</h2>
                 {categories?.length > 0 && categories.map(c => (
                     <button onClick={() => {
                         setEditedCategory(c);

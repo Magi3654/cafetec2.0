@@ -59,7 +59,7 @@ export default function NewMenuItemsPage(){
             <div className="max-w-md mx-auto mt-8">
                 <Link href={'/menu-items'} className="button">
                     <Left/>
-                    <span>Show All Menu Items</span>
+                    <span>Listado de productos</span>
                 </Link>
             </div>
             <MenuItemForm/>

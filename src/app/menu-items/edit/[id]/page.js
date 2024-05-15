@@ -73,7 +73,7 @@ export default function EditMenuItemPage() {
             <div className="max-w-md mx-auto mt-8">
                 <Link href={'/menu-items'} className="button">
                     <Left></Left>
-                    <span>Mostrar todo el menu</span>
+                    <span>Listado de productos</span>
                 </Link>
             </div> 
             <MenuItemForm menuItem={menuItem} onSubmit={handleFormSubmit}/>

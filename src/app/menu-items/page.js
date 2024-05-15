@@ -33,13 +33,13 @@ export default function MenuItemsPage(){
             <UserTabs isAdmin={true}/>
             <div className="mt-8">
                 <Link href={'/menu-items/new'} className="button">
-                    Create New Menu Item
+                    Crear producto
                     <Right/>
                 </Link>
             </div>
 
             <div>
-                <h1 className="font-semibold text-sm mt-8">Edit menu item:</h1>
+                <h1 className="font-semibold text-sm mt-8 mb-2">Editar producto:</h1>
                 <div className="grid grid-cols-3 gap-2">
                     {menuItems?.length > 0 && menuItems.map(item => (
                         <Link key={item._id} href={'/menu-items/edit/'+item._id} className="bg-gray rounded-lg p-4">
