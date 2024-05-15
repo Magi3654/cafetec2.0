@@ -2,7 +2,9 @@
 import EditableImage from "@/components/layout/EditableImage";
 import UserTabs from "@/components/layout/UserTabs";
 import { useProfile } from "@/components/UseProfile"
+import { rejects } from "assert";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function MenuItemsPage(){
     const [image, setImage]=useState('');
@@ -14,11 +16,23 @@ export default function MenuItemsPage(){
     async function handleFormSubmit(e){
         e.preventDefault();
         const data = {image, name, description,basePrice}
-        fetch('/api/menu-items', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {'Content-Type': 'application/json'}
-        })
+        const savingPromise = new Promise(async(resolve, reject)=>{
+
+            const response = await fetch('/api/menu-items', {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {'Content-Type': 'application/json'}
+            })
+            if(response.ok)
+                resolve();
+            else
+                reject();
+        });
+        await toast.promise(savingPromise,{
+            loading: 'Guardando producto',
+            success: 'Guardado',
+            error:'Ups surgio un error'
+        });
     }
 
     if(loading){
