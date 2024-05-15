@@ -42,7 +42,7 @@ export default function EditableImage({link, setLink}){
         }
         <label>
             <input type="file" className="hidden" onChange={handleFileChange}></input>
-            <span className="block border border-gray-300 rounded-lg p-2 text-center cursor-pointer">Edit</span>
+            <span className="block shadow-md bg-yellow rounded-lg p-2 text-center text-sm text-white font-semibold cursor-pointer">Cambiar</span>
         </label>
         </>
     )

@@ -1,7 +1,6 @@
 'use client'
 import Left from '@/components/icons/Left'
 import MenuItemForm from "@/components/layout/MenuItemForm";
-import EditableImage from "@/components/layout/EditableImage";
 import UserTabs from "@/components/layout/UserTabs";
 import { UseProfile } from "@/components/UseProfile";
 import { redirect } from 'next/dist/server/api-utils';

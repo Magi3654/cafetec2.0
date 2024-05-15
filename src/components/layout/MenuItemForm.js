@@ -15,26 +15,29 @@ export default function MenuItemForm({onSubmit, menuItem}) {
                     <EditableImage link={image} setLink={setImage}/>
                 </div>
 
-                <div className="grow">
-                    <label>Item name</label>
+                <div className="grow flex flex-col">
+                    <label className="font-semibold text-sm">Nombre del Producto</label>
                     <input
                         type="text"
                         value={name}
                         onChange={ev => setName(ev.target.value)}
+                        className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2"
                     />
 
-                    <label>Descipcion</label>
+                    <label className="font-semibold text-sm">Descripción</label>
                     <input
                         type="text"
                         value={description}
                         onChange={ev => setDescription(ev.target.value)}
+                        className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2"
                     />
 
-                    <label>Precio</label>
+                    <label className="font-semibold text-sm">Precio (mxn)</label>
                     <input
                         type="text"
                         value={basePrice}
                         onChange={ev => setBasePrice(ev.target.value)}
+                        className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2"
                     />
 
                     <button type="submit">Guardar</button>
