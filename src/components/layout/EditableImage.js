@@ -18,7 +18,7 @@ export default function EditableImage({link, setLink}){
                         setLink(link);
                     })
                 }
-                throw new Error('Ups algo salio mal');
+                throw new Error('Something went wrong');
             });
             
             await toast.promise(uploadPromise, {
@@ -28,6 +28,7 @@ export default function EditableImage({link, setLink}){
             });
         }
     }
+    
     return(
         <>
         {link && (
@@ -39,6 +40,10 @@ export default function EditableImage({link, setLink}){
             </div>
         )
         }
+        <label>
+            <input type="file" className="hidden" onChange={handleFileChange}></input>
+            <span className="block border border-gray-300 rounded-lg p-2 text-center cursor-pointer">Edit</span>
+        </label>
         </>
     )
 }

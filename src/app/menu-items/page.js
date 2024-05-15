@@ -1,45 +1,24 @@
 'use client'
+import { UseProfile } from "@/components/UseProfile";
 import EditableImage from "@/components/layout/EditableImage";
 import UserTabs from "@/components/layout/UserTabs";
-import { useProfile } from "@/components/UseProfile"
 import { rejects } from "assert";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function MenuItemsPage(){
-    const [image, setImage]=useState('');
-    const [name,setName]=useState('');
-    const [description, setDescription]=useState('');
-    const [basePrice, setPrice]=useState('');
-    const {loading, data} = useProfile();
-
-    async function handleFormSubmit(e){
-        e.preventDefault();
-        const data = {image, name, description,basePrice}
-        const savingPromise = new Promise(async(resolve, reject)=>{
-
-            const response = await fetch('/api/menu-items', {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {'Content-Type': 'application/json'}
-            })
-            if(response.ok)
-                resolve();
-            else
-                reject();
-        });
-        await toast.promise(savingPromise,{
-            loading: 'Guardando producto',
-            success: 'Guardado',
-            error:'Ups surgio un error'
-        });
-    }
+    const [image, setImage] = useState('');
+    const [name,setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [basePrice, setPrice] = useState('');
+    const {loading, data} = UseProfile()
 
     if(loading){
-        return 'Cargando Usuario';
+        return 'Loading user info...';
     }
+
     if(!data.admin){
-        return 'No eres administracion'; 
+        return 'No eres administrador.'; 
     }
     
 
@@ -51,13 +30,17 @@ export default function MenuItemsPage(){
                     <div>
                         <EditableImage link={image} setLink={setImage}/>
                     </div>
-                    <div className="grow">
-                        <label>Nombre del elemento</label>
-                        <input type="text" value={name} onChange={e=>setName(e.target.value)}/>
-                        <label>Descripcion</label>
-                        <input type="text" value={description} onChange={e=>setName(e.target.value)}/>
-                        <label>Precio</label>
-                        <input type="text" value={basePrice} onChange={e=>setName(e.target.value)}/>
+
+                    <div className="grow flex flex-col">
+                        <label className="font-semibold text-sm">Nombre del elemento</label>
+                        <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2" value={name} onChange={ev => setName(ev.target.value)}/>
+                        
+                        <label className="font-semibold text-sm">Descripcion</label>
+                        <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2" value={description} onChange={ev => setName(ev.target.value)}/>
+                        
+                        <label className="font-semibold text-sm">Precio</label>
+                        <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2" value={basePrice} onChange={ev => setName(ev.target.value)}/>
+                        
                         <button className="mb-2" type="submit">Guardar</button>
                     </div>
                 </div>

@@ -70,8 +70,6 @@ export default function ProfilePage(){
 
     }
 
-
-
     if (status === 'loading' || !profileFetched){
         return 'Cargando...';
     }
