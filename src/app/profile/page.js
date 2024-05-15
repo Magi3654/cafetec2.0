@@ -87,34 +87,34 @@ export default function ProfilePage(){
             <div className="max-w-md mx-auto mt-8 ">
                 <div className="flex gap-4 items-center">
                     <div>
-                        <div className=" p-2 rounded-lg relative max-w-[120px]">
+                        <div className="p-2 rounded-lg relative max-w-[120px]">
                             <EditableImage link={image} setLink={setImage}/>
                         </div>
                     </div>
 
                     <form className="grow flex flex-col" onSubmit={handleProfileInfoUpdate}>
                         <div className="flex flex-col m-1">
-                            <label className="my-2 font-semibold text-sm">Nombre Completo</label>
-                            <input type="text" placeholder="Nombre Completo" className="rounded-md bg-gray py-2 px-4 my-2"
+                            <label className="font-semibold text-sm">Nombre Completo</label>
+                            <input type="text" placeholder="Nombre Completo" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2"
                                 value={userName} onChange={ev => setUserName(ev.target.value)}/>
                         </div>
 
                         <div className="flex flex-col m-1">
-                            <label className="my-2 mr-3 font-semibold">Email</label>
-                            <input type="email" disabled={true} className="rounded-md bg-gray py-2 px-4 my-2"
+                            <label className="font-semibold text-sm">Email</label>
+                            <input type="email" disabled={true} className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2"
                                 value={session.data.user.email} placeholder="email"></input>
                         </div>
 
                         <div className="flex flex-col m-1">
 
-                            <label className="my-2 mr-3 font-semibold">Phone Number</label>
-                            <input type="tel" className="rounded-md bg-gray py-2 px-4 my-2"
+                            <label className="font-semibold text-sm">Phone Number</label>
+                            <input type="tel" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2"
                                 value={phone} placeholder="Phone Number" onChange={ev => setPhone(ev.target.value)}></input>
                         </div>
 
                         <div className="flex flex-col m-1">
-                            <label className="my-2 mr-3 font-semibold">Country</label>
-                            <input type="text" className="rounded-md bg-gray py-2 px-4 my-2"
+                            <label className="font-semibold text-sm">Country</label>
+                            <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2"
                                 value={country} placeholder="Country" onChange={ev => setCountry(ev.target.value)}></input>
                         </div>
 
