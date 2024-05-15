@@ -28,15 +28,15 @@ export default function EditableImage({link, setLink}){
             });
         }
     }
-    
+
     return(
         <>
         {link && (
             <Image className="rounded-lg w-full h-full" src={link} width={250} height={250} alt={'avatar'}/>
         )}
         {!link && (
-            <div className="bg-babyYellow p-4 text-brown rounded-lg mb-1">
-                no image
+            <div className="bg-babyYellow p-4 text-brown text-center rounded-lg mb-1">
+                No image
             </div>
         )
         }
