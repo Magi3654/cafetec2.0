@@ -15,9 +15,9 @@ input[type="text"]:disabled{
     @apply bg-lightBrown cursor-not-allowed;
     
 }
-button{
-    @apply block w-full text-brown font-semibold;
-    @apply border-yellow shadow-md rounded-xl px-6 py-2;
+button, .button {
+    @apply flex w-full justify-center gap-2 font-semibold;
+    @apply border border-gray shadow-md rounded-xl px-6 py-2;
 }
 button[type="submit"], .submit{
     @apply border-0 bg-lightBrown text-white;
@@ -26,7 +26,7 @@ button [type="submit"]:disabled, .submit.submit:disabled{
     @apply cursor-not-allowed bg-yellow;
 }
 div.tabs> * {
-    @apply bg-semiGray text-white font-normal rounded-full py-2 px-4 
+    @apply bg-semiGray text-white whitespace-nowrap font-normal rounded-full py-2 px-4 
 }
 div.tabs> *.active{
     @apply bg-lightBrown shadow-md text-white font-semibold rounded-full py-2 px-4
