@@ -111,9 +111,19 @@ export default function CategoriesPage(){
                         <input type="text" className="rounded-md bg-gray py-2 px-4 my-2" value={categoryName} placeholder="Nombre de la categoría" onChange={ev => setCategoryName(ev.target.value)}></input>
                     </div>
 
-                    <div className="pb-2">
+                    <div className="pb-2 flex gap-2">
                         <button className="border bg-yellow" type="submit">
                             {editedCategory ? 'Actualizar' : 'Crear'}
+                        </button>
+
+                        <button
+                            type="button" 
+                            onClick={() => {
+                                setEditedCategory(null);
+                                setCategoryName('');
+                            }} 
+                            className="border border-slate-100 px-4 bg-white shadow-md">
+                            Cancelar
                         </button>
                     </div>
                 </div>
