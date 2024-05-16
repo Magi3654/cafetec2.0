@@ -5,22 +5,24 @@ export default function DeleteButton({label, onDelete}) {
 
     if (showConfirm) {
         return (
-            <div>
-                <div className="font-semibold text-sm text-center">¿Seguro que deseas eliminar el producto?</div>
-                <div className="flex gap-2 mt-2">
-                    <button 
-                        type="button" 
-                        onClick={() => setShowConfirm(false)}
-                        className="border border-slate-100 rounded-lg shadow-md text-sm px-3">
-                        Cancelar
-                    </button>
+            <div className="justify-center">
+                <div className="bg-white p-4 rounded-lg">
+                    <div className="font-semibold text-sm text-center">¿Seguro que deseas eliminar el producto?</div>
+                    <div className="flex gap-2 mt-2">
+                        <button 
+                            type="button" 
+                            onClick={() => setShowConfirm(false)}
+                            className="border border-slate-100 rounded-lg shadow-md text-sm px-3">
+                            Cancelar
+                        </button>
 
-                    <button 
-                        type="button" 
-                        onClick={onDelete}
-                        className="border border-slate-100 bg-yellow text-white rounded-lg shadow-md text-sm px-3">
-                        Sí, eliminar!
-                    </button>
+                        <button 
+                            type="button" 
+                            onClick={onDelete}
+                            className="border border-slate-100 bg-yellow text-white rounded-lg shadow-md text-sm px-3">
+                            Sí,&nbsp;eliminar!
+                        </button>
+                    </div>
                 </div>
             </div>
         );
