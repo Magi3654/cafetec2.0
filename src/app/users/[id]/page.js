@@ -7,9 +7,16 @@ export default function EditUserPage(){
 
     const {loading, data} = UseProfile();
 
+
     useEffect(()=>{
-        fetch('/api/users')
-    },[])
+        fetch('/api/users').then(res=>{
+           res.json().then(users =>{
+
+           }) 
+        })
+    },[]);
+
+    return id;
 
     if (loading){
         return 'Cargando perfil de usuario'
