@@ -2,12 +2,13 @@
 import UserTabs from "@/components/layout/UserTabs";
 import {UseProfile} from "@/components/UseProfile";
 import UserForm from "../../../components/layout/UserForm";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+
 export default function EditUserPage(){
 
     const {loading, data} = UseProfile();
-    const[user, setUser] = useState(null)
+    const [user, setUser] = useState(null)
     const {id} = useParams();
 
 
@@ -32,11 +33,11 @@ export default function EditUserPage(){
     }
 
     if (loading){
-        return 'Cargando perfil de usuario'
+        return 'Cargando perfil de usuario...'
     } 
 
     if(!data.admin){
-        return 'No eres administrador'
+        return 'No eres administrador.'
     }
 
     return(

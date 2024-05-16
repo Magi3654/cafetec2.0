@@ -18,6 +18,7 @@ export async function PUT(req){
       const email = session.user.email;
       filter = {email}
     }
+
     await User.updateOne(filter, {name, image});
     await UserInfo.findOneAndUpdate(filter, otherUserInfo, {upsert:true})
     
@@ -27,6 +28,7 @@ export async function PUT(req){
 
   export async function GET() {
     mongoose.connect(process.env.MONGO_URL);
+
     const session = await getServerSession(authOptions);
     const email = session?.user?.email;
     if(!email){

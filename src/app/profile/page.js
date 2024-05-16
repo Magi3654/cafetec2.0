@@ -3,37 +3,33 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { resolve } from "path";
-import { rejects } from "assert";
 import toast from "react-hot-toast";
-import Link from "next/link";
 import UserTabs from "../../components/layout/UserTabs";
-import { set } from "mongoose";
-import EditableImage from "@/components/layout/EditableImage";
 import UserForm from "../../components/layout/UserForm";
 
 export default function ProfilePage(){
     
     const session = useSession();
-    const [user,setUser] = useState(null)
+    const [user, setUser] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false)
-    const [profileFetched, setProfileFetched]=useState(false)    
+    const [profileFetched, setProfileFetched] = useState(false)    
     const {status} = session;
 
     useEffect(()=>{
         if(status === 'authenticated'){
             fetch('/api/profile').then(response => {
                 response.json().then(data => {
-                    setUser(data)
+                    setUser(data);
                     setIsAdmin(data.admin);
                     setProfileFetched(true);
                 })
-            })
+            });
         }
     }, [session, status]);
 
-    async function handleProfileInfoUpdate(ev, data){
+    async function handleProfileInfoUpdate(ev, data) {
         ev.preventDefault();
+
         const savingPromise = new Promise(async (resolve, reject) => {
 
             const response = await fetch('/api/profile', {
@@ -75,5 +71,5 @@ export default function ProfilePage(){
                 <UserForm user={user} onSave={handleProfileInfoUpdate}/>
             </div>
         </section>
-    )
+    );
 }

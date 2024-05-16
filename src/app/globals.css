@@ -19,6 +19,12 @@ input[type="text"]:disabled{
     @apply bg-lightBrown cursor-not-allowed;
     
 }
+
+.buttonBorder {
+    @apply flex w-full justify-center gap-2 font-semibold;
+    @apply rounded-xl px-5 py-2 bg-white shadow-md text-sm;
+}
+
 button, .button {
     @apply flex w-full justify-center gap-2 font-semibold;
     @apply rounded-xl px-6 py-2;
