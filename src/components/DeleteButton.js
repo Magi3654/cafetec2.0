@@ -18,7 +18,10 @@ export default function DeleteButton({label, onDelete}) {
 
                         <button 
                             type="button" 
-                            onClick={onDelete}
+                            onClick={() => {
+                                onDelete(); 
+                                setShowConfirm(false)
+                            }}
                             className="border border-slate-100 bg-yellow text-white rounded-lg shadow-md text-sm px-3">
                             Sí,&nbsp;eliminar!
                         </button>

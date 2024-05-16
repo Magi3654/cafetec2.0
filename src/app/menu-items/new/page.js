@@ -3,7 +3,7 @@ import Left from '@/components/icons/Left'
 import MenuItemForm from "@/components/layout/MenuItemForm";
 import UserTabs from "@/components/layout/UserTabs";
 import { UseProfile } from "@/components/UseProfile";
-import { redirect } from 'next/dist/server/api-utils';
+import { redirect } from 'next/navigation';
 import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast"
@@ -62,7 +62,7 @@ export default function NewMenuItemsPage(){
                     <span>Listado de productos</span>
                 </Link>
             </div>
-            <MenuItemForm />
+            <MenuItemForm menuItem={null} onSubmit={handleFormSubmit} />
         </section>
     )
 }
