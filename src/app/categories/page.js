@@ -145,7 +145,7 @@ export default function CategoriesPage(){
                                 className="border border-slate-100 bg-white shadow-md">
                                 Editar
                             </button>
-
+                            
                             <button 
                                 onClick={() => handleDeleteClick(c._id)}
                                 type="button" 
