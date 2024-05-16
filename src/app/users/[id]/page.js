@@ -13,9 +13,8 @@ export default function EditUserPage(){
 
 
     useEffect(()=>{
-        fetch('/api/users').then(res=>{
-           res.json().then(users =>{
-            const user = users.find(u=> u._id === id);
+        fetch('/api/profile?_id='+id).then(res=>{
+           res.json().then(user =>{
             setUser(user)
            }) 
         })

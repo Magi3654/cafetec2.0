@@ -9,6 +9,8 @@ export default function UserForm({user, onSave}) {
     const [image, setImage] = useState(user?.image ||'');
     const [phone, setPhone] = useState(user?.phone ||'');
     const [country, setCountry] = useState(user?.country || '');
+    const [admin, setAdmin] = useState(user?.admin||false);
+    const {data: loggedInUserData} = UseProfile();
 
     return(
         <div className="flex gap-4 items-center">
@@ -51,8 +53,18 @@ export default function UserForm({user, onSave}) {
                     <label className="font-semibold text-sm">País</label>
                     <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2"
                             value={country} placeholder="Country" onChange={ev => setCountry(ev.target.value)}></input>
+                            {loggedInUserData.admin && (
+                                <div>
+                                    <label className="p-2 flex items-center gap-2 block  mb-2" htmlFor="adminCb">
+                                    <input id="adminCb"type="checkbox" className=""
+                                    value={'1'} checked={admin} onClick={e => setAdmin(e.target.checked)}
+                                    />
+                                        <span>Admin</span>
+                                    </label>
+                              </div>
+                            )}
                 </div>
-
+              
                 <button type="submit">Guardar</button>
             </form>
         </div>
