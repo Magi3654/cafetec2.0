@@ -29,8 +29,8 @@ export default function UsersPage(){
         <section className="max-w-2xl mx-auto mt-8">
             <UserTabs isAdmin={true}/>
             <div className="mt-8">
-                {users?.length>0 && users.map(user=>{
-                    <div className="bg-gray rounded-lg mb-2 p-1 px-4 grid drid-cols-3 items-center gap-4">
+                {users?.lenght > 0 && users.map(user=>{
+                    <div className="bg-gray rounded-lg mb-2 p-1  px-4 flex items-center gap-4">
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 grow">
                             <div className="text-gray">
                             {!!user.name && (<span>{user.name}</span>)}
@@ -39,7 +39,7 @@ export default function UsersPage(){
                             <span className="text-gray">{user.email}</span>
                         </div>
                         <div>
-                            <Link href={'/users/'+ user._id} className="button">
+                            <Link className="button" href={'/users/'+ user._id} >
                                 Editar
                                 </Link>
                         </div>

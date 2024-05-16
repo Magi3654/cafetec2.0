@@ -95,7 +95,7 @@ export default function EditMenuItemPage() {
     return(
         <section className="mt-8">
             <UserTabs isAdmin={true}/>
-            <div className="max-w-md mx-auto mt-8 rounded-lg border border-gray shadow-md">
+            <div className="max-w-2xl mx-auto mt-8 rounded-lg border border-gray shadow-md">
                 <Link href={'/menu-items'} className="button">
                     <Left></Left>
                     <span>Listado de productos</span>
