@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import UserTabs from "../../components/layout/UserTabs";
 import { UseProfile } from "../../components/UseProfile";
+import Trash from "@/components/icons/Trash";
 import toast from "react-hot-toast";
 
 export default function CategoriesPage(){
@@ -61,6 +62,32 @@ export default function CategoriesPage(){
         });
     }
 
+    async function handleDeleteClick(_id) {
+        const promise = new Promise (async (resolve, reject) => {
+
+            const response = await fetch('/api/categories?_id='+_id, {
+                method: 'DELETE',
+            });
+            setCategoryName('');
+
+            if (response.ok) {
+                resolve();
+            }
+
+            else {
+                reject();
+            }
+        });
+
+        await toast.promise(promise, {
+            loading: 'Eliminando...',
+            success: 'Categoría eliminada',
+            error: 'Error',
+        });
+        
+        fetchCategories();
+    }
+
     if (profileLoading) {
         return 'Cargando información de usuario...'
     }
@@ -93,15 +120,30 @@ export default function CategoriesPage(){
             </form>
 
             <div>
-                <h2 className="mt-8 mb-2 font-semibold text-sm">Editar categoría:</h2>
+                <h2 className="mt-8 mb-2 font-semibold text-sm">Listado de categorías:</h2>
                 {categories?.length > 0 && categories.map(c => (
-                    <button onClick={() => {
-                        setEditedCategory(c);
-                        setCategoryName(c.name)
-                        }}
-                        className="bg-gray border-semiGray shadow-md rounded-md p-2 px-4 flex gap-1 cursor-pointer mb-2">
-                        <span className="text-sm font-normal text-black">{c.name}</span>
-                    </button>
+                    <div className="bg-gray border-semiGray shadow-md text-sm items-center rounded-md p-2 px-4 flex gap-1 mb-2">
+                        <div className="grow font-normal text-black">{c.name}</div>
+
+                        <div className="flex gap-1">
+                            <button 
+                                type="button"
+                                onClick={() => {
+                                    setEditedCategory(c);
+                                    setCategoryName(c.name)
+                                }}
+                                className="border border-slate-100 bg-white shadow-md">
+                                Editar
+                            </button>
+
+                            <button 
+                                onClick={() => handleDeleteClick(c._id)}
+                                type="button" 
+                                className="border border-slate-100 px-4 bg-white shadow-md">
+                                <Trash/>
+                            </button>
+                        </div>
+                    </div>
                 ))}
             </div>
         </section>
