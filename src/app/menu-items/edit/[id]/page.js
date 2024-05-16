@@ -55,6 +55,30 @@ export default function EditMenuItemPage() {
 
     }
 
+    async function handleDeleteClick() {
+        const promise = new Promise(async (resolve, reject) => {
+            const res = await fetch('/api/menu-items?_id='+id, {
+                method: 'DELETE',
+            });
+
+            if (res.ok) {
+                resolve();
+            }
+
+            else {
+                reject();
+            }
+        });
+
+        await toast.promise(promise, {
+            loading: 'Eliminando...',
+            success: 'Producto eliminado',
+            error: 'Error',
+        });
+
+        setRedirectToItems(true);
+    }
+
     if (redirectToItems) {
         return redirect('/menu-items');
     }
@@ -77,6 +101,13 @@ export default function EditMenuItemPage() {
                 </Link>
             </div> 
             <MenuItemForm menuItem={menuItem} onSubmit={handleFormSubmit}/>
+            <div className='max-w-md mx-auto mt-4'>
+                <div className='max-w-xs ml-auto pl-4'>
+                    <button onClick={handleDeleteClick} className='rounded-lg border border-gray shadow-md'>
+                        Eliminar producto
+                    </button>
+                </div>
+            </div>
         </section>
     )
 }   

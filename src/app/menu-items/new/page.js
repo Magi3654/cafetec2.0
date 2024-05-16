@@ -62,7 +62,7 @@ export default function NewMenuItemsPage(){
                     <span>Listado de productos</span>
                 </Link>
             </div>
-            <MenuItemForm/>
+            <MenuItemForm />
         </section>
     )
 }
