@@ -3,6 +3,7 @@ import UserTabs from "@/components/layout/UserTabs";
 import {UseProfile} from "@/components/UseProfile";
 import UserForm from "../../../components/layout/UserForm";
 import { useEffect } from "react";
+
 export default function EditUserPage(){
 
     const {loading, data} = UseProfile();
