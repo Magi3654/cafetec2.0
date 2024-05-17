@@ -43,9 +43,8 @@ export default function(){
                     </>
                 )}
 
-                {cartProducts?.length > 0 && (
-                    <Link href={'/cart'}>Cart ({cartProducts.length})</Link>
-                )}
+                <Link href={'/cart'}>Cart ({cartProducts.length})</Link>
+                
             </nav>
 
         </header>
