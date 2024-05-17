@@ -1,8 +1,9 @@
-import bcrypt from "bcrypt"
-import * as mongoose from "mongoose"
 import clientPromise from "@/libs/mongoConnect";
-import {User} from "@/models/User"
-import NextAuth from "next-auth/next";
+import { UserInfo } from "@/models/UserInfo";
+import bcrypt from "bcrypt";
+import * as mongoose from "mongoose";
+import { User } from "@/models/User";
+import NextAuth, {getServerSession} from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
@@ -13,7 +14,7 @@ export const authOptions = {
   providers: [
       GoogleProvider({
         clientId: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       }),
       CredentialsProvider({
           name: "Credentials",
@@ -22,7 +23,6 @@ export const authOptions = {
             username: { label: "Email", type: "email", placeholder: "test@example.com" },
             password: { label: "Password", type: "password" }
           },
-
           
           async authorize(credentials, req) {
             const email = credentials?.email;
