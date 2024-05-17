@@ -1,4 +1,6 @@
 'use client'
+import toast from "react-hot-toast";
+
 import UserTabs from "@/components/layout/UserTabs";
 import {UseProfile} from "@/components/UseProfile";
 import UserForm from "../../../components/layout/UserForm";
@@ -14,37 +16,38 @@ export default function EditUserPage(){
 
 
     useEffect(()=>{
-        fetch('/api/profile?_id='+id).then(res=>{
-           res.json().then(user =>{
+        fetch('/api/profile?_id='+id).then(res => {
+           res.json().then(user => {
             setUser(user)
-           }) 
+           }); 
         })
-    },[]);
+    }, []);
 
  
-    async function handleSaveButtonClick(e, data){
-        e.preventDefault();
-        const promise = new Promise(async(resolve, reject)=>{
-            const res = await fetch('/api/profile',{
+    async function handleSaveButtonClick(ev, data){
+        ev.preventDefault();
+
+        const promise = new Promise(async (resolve, reject) => {
+            const res = await fetch('/api/profile', {
                 method : 'PUT',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({...data, _id:id})
+                body: JSON.stringify({...data, _id:id}),
             })
-            if(res.ok){
-                resolve()
+
+            if (res.ok) {
+                resolve();
             }
-            else{
-                reject()
+
+            else {
+                reject();
             }
+
             await toast.promise(promise, {
-                loading: 'Guardando Usuario',
+                loading: 'Guardando Usuario...',
                 success: 'Usuario guardado',
                 error: 'Ups un error ha ocurrido'
-
-            })
+            });
         })
-        
-
     }
 
     if (loading){
