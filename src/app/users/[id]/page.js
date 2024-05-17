@@ -5,6 +5,7 @@ import UserForm from "../../../components/layout/UserForm";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
+
 export default function EditUserPage(){
 
     const {loading, data} = UseProfile();
@@ -21,13 +22,28 @@ export default function EditUserPage(){
     },[]);
 
  
-    function handleSaveButtonClick(e, data){
+    async function handleSaveButtonClick(e, data){
         e.preventDefault();
-        fetch('/api/profile'),{
-            method : 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({...data, id:id})
-        }
+        const promise = new Promise(async(resolve, reject)=>{
+            const res = await fetch('/api/profile',{
+                method : 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({...data, _id:id})
+            })
+            if(res.ok){
+                resolve()
+            }
+            else{
+                reject()
+            }
+            await toast.promise(promise, {
+                loading: 'Guardando Usuario',
+                success: 'Usuario guardado',
+                error: 'Ups un error ha ocurrido'
+
+            })
+        })
+        
 
     }
 
