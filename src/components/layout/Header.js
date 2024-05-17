@@ -1,7 +1,9 @@
 'use client'
 import {signOut, useSession} from "next-auth/react";
+import {CartContext} from "@/components/AppContext";
 import Link from "next/link";
 import Image from "next/image";
+import { useContext } from "react";
 
 export default function(){
     const session = useSession();
@@ -10,6 +12,8 @@ export default function(){
     const status = session?.status;
     const userData = session.data?.user;
     let userName = userData?.name || userData?.email;
+
+    const {cartProducts} = useContext(CartContext);
 
     if (userName && userName.includes(' ')) {
         userName = userName.split(' ')[0];
@@ -37,6 +41,10 @@ export default function(){
                         <Link href={'/login'}>Iniciar sesión</Link>
                         <Link href={'/register'} className="border border-gray shadow-md bg-yellow rounded-full text-white px-6 py-2">Registrarse</Link>
                     </>
+                )}
+
+                {cartProducts?.length > 0 && (
+                    <Link href={'/cart'}>Cart ({cartProducts.length})</Link>
                 )}
             </nav>
 
