@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function UserForm({user, onSave}) {
     console.log(user);
-    const [userName, setUserName] = useState(user?.name || '');
+    const [userName, setUserName] = useState(user?.nameName || '');
     const [image, setImage] = useState(user?.image ||'');
     const [phone, setPhone] = useState(user?.phone ||'');
     const [country, setCountry] = useState(user?.country || '');
