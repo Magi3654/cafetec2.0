@@ -2,15 +2,28 @@
 import EditableImage from "@/components/layout/EditableImage";
 import {UseProfile} from "@/components/UseProfile";
 import { useState } from "react";
+import AddressInputs from "@/components/layout/AddressInputs";
 
 export default function UserForm({user, onSave}) {
     console.log(user);
     const [userName, setUserName] = useState(user?.name || '');
     const [image, setImage] = useState(user?.image || '');
     const [phone, setPhone] = useState(user?.phone || '');
+    const [streetAddress, setStreetAddress] = useState(user?.streetAddress || '');
+    const [postalCode, setPostalCode] = useState(user?.postalCode || '');
+    const [city, setCity] = useState(user?.phone || '');
     const [country, setCountry] = useState(user?.country || '');
     const [admin, setAdmin] = useState(user?.admin || false);
     const {data:loggedInUserData} = UseProfile();
+
+    function handleAddressChange(propName, value){
+        if(propName === 'phone') setPhone(value);
+        if(propName === 'streetAddress') setStreetAddress(value);
+        if(propName === 'postalCode') setPostalCode(value);
+        if(propName === 'city') setCity(value);
+        if(propName === 'country') setCountry(value);
+
+    }
 
 
     return(
@@ -45,17 +58,9 @@ export default function UserForm({user, onSave}) {
                             value={user.email} placeholder="email"></input>
                 </div>
 
-                <div className="flex flex-col m-1">
-                    <label className="font-semibold text-sm">Número de teléfono</label>
-                    <input type="tel" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2"
-                            value={phone} placeholder="Phone Number" onChange={ev => setPhone(ev.target.value)}></input>
-                </div>
-
-                <div className="flex flex-col m-1">
-                    <label className="font-semibold text-sm">País</label>
-                    <input type="text" className="rounded-md text-sm font-medium bg-gray py-2 px-4 my-2"
-                            value={country} placeholder="Country" onChange={ev => setCountry(ev.target.value)}></input>
-
+               <AddressInputs adressProps={{
+                phone, streetAddress, postalCode, city, country}}
+                setAddressProps={handleAddressChange}/>
                     {loggedInUserData.admin && (
                         <div>
                             <label className="p-2 inline-flex items-center gap-2 mb-2" htmlFor="adminCb">
@@ -66,7 +71,6 @@ export default function UserForm({user, onSave}) {
                             </label>
                         </div>
                     )}
-                </div>
               
                 <button type="submit">Guardar</button>
             </form>

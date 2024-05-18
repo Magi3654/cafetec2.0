@@ -33,13 +33,13 @@ export function AppProvider({children}) {
         saveCartProductsToLocalStorage([]);
     }
 
-    function removeCartProduct(index) {
+    function removeCartProduct(indexToRemove) {
         setCartProducts(prevCartProducts => {
             const newCartProducts = prevCartProducts.filter((v, index) => index !== indexToRemove);
             saveCartProductsToLocalStorage(newCartProducts);
-
             return newCartProducts;
         });
+        toast.success('Articulo eliminado')
     }
 
     function saveCartProductsToLocalStorage(cartProducts) {
