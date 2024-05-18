@@ -1,5 +1,5 @@
 export default function MenuItemTile({onAddToCart, ...item}) {
-    const {image, description, name, basePrice} = item;
+    const {image, description, name, basePrice, sizes, extraIngredientPrices} = item;
 
     return (
         <div className="bg-babyYellow p-4 rounded-lg text-center" >
