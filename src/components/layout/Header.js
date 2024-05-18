@@ -1,6 +1,7 @@
 'use client'
 import {signOut, useSession} from "next-auth/react";
 import {CartContext} from "@/components/AppContext";
+import ShoppingCart from "@/components/icons/ShoppingCart"
 import Link from "next/link";
 import Image from "next/image";
 import { useContext } from "react";
@@ -43,7 +44,10 @@ export default function(){
                     </>
                 )}
 
-                <Link href={'/cart'}>Cart ({cartProducts.length})</Link>
+                <Link href={'/cart'} className="relative">
+                    <ShoppingCart/>
+                    <span className="absolute -top-2 -right-2 bg-yellow text-white text-xs p-1 rounded-full leading-3">{cartProducts.length}</span>
+                </Link>
                 
             </nav>
 
