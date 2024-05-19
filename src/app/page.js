@@ -5,7 +5,7 @@ import TopMenu from "@/components/layout/TopMenu";
 
 export default function Home() {
   return (
-    <>
+    <div className="flex flex-col">
     <Hero/>
     <TopMenu/>
     <section className="text-center my-16" id="about">
@@ -22,7 +22,6 @@ export default function Home() {
         </p>
       </div>
     </section>
-
-    </>
+    </div>
   );
 }

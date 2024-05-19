@@ -2,11 +2,13 @@
 import {signOut, useSession} from "next-auth/react";
 import {CartContext} from "@/components/AppContext";
 import ShoppingCart from "@/components/icons/ShoppingCart"
+import Menu from "@/components/icons/Menu"
 import Link from "next/link";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
-export default function(){
+export default function() {
+    // const [isOpen, setIsOpen] = useState(false);
     const session = useSession();
     console.log(session);
 
@@ -20,16 +22,21 @@ export default function(){
         userName = userName.split(' ')[0];
     }
 
+    /*
+        const toggleDropdown = () => {
+            setIsOpen(!isOpen);
+        }
+
+        const handleLinkClick = () => {
+            setIsOpen(false);
+        }
+    */
+
     return(
         <header className="flex items-center justify-between">
             <Image src={'/logo.png'} height={90} width={90} className="flex-none" alt={'logo'}/>
+
             
-            <nav className="text-center flex-1 items-center gap-4 text-lightBrown font-semibold">
-                <Link className='mx-2' href={'/'}>Home</Link>
-                <Link className='mx-2' href={'/menu'}>Menu</Link>
-                <Link className='mx-2' href={'/payment'}>Método de Pago</Link>
-                <Link className='mx-2' href={'/#about'}>About</Link>
-            </nav>
             <nav className="flex items-center gap-8 font-semibold">
                 {status === 'authenticated' && (
                     <>
