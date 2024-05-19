@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { decryptNumber } from "@/models/Cards";
 
 export default function CardForm({onSubmit, card}) {
-    const [propietario, setPropietario] = useState(card?.nombrePropietario || '');
-    const [numeroTarjeta, setNumeroTarjeta] = useState(card?.numero || '');
+    const [nombrePropietario, setNombrePropietario] = useState(card?.nombrePropietario || '');
+    const [numero, setNumero] = useState(card?.numero?.content || '');
     const [fechaVencimiento, setFechaVencimiento] = useState(card?.fechaVencimiento || '');
-    const [cvv, setCvv] = useState(card?.cvv || '');
+    const [cvv, setCvv] = useState(card?.cvv?.content || '');
     const [pais, setPais] = useState(card?.pais || '');
 
     return (
-        <form onSubmit={ev => onSubmit(ev, {propietario, numeroTarjeta, fechaVencimiento, cvv, pais,})}
+        <form onSubmit={ev => onSubmit(ev, {nombrePropietario, numero, fechaVencimiento, cvv, pais,})}
             className="mt-8 max-w-2xl mx-auto">
 
             <div className="grow flex flex-col">
@@ -18,18 +19,18 @@ export default function CardForm({onSubmit, card}) {
                     className="input"
                     type="text"
                     placeholder="ej. Juan Lopez"
-                    value={propietario}
-                    onChange={ev => setPropietario(ev.target.value)}/>
+                    value={nombrePropietario}
+                    onChange={ev => setNombrePropietario(ev.target.value)}/>
 
                 <label className="font-semibold text-sm">Numero de tarjeta</label>
                 <input
                     className="input"
                     type="text"
                     placeholder="0000 0000 0000 0000"
-                    value={numeroTarjeta}
-                    onChange={ev => setNumeroTarjeta(ev.target.value)}/>
+                    value={numero}
+                    onChange={ev => setNumero(ev.target.value)}/>
 
-                <div className="flex mt-2">
+                <div className="grid grid-cols-2 gap-8 mt-2">
                     <div className="flex flex-col">
                         <label className="font-semibold text-sm">Fecha de vencimiento</label>
                         <input

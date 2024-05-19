@@ -11,7 +11,6 @@ import { redirect } from "next/navigation";
 
 export default function NewCardPage() {
     const {loading, data} = UseProfile();
-    const [cards, setCards] = useState([]);
     const [redirectToCards, setRedirectToCards] = useState(false);
 
     async function handleForm(ev, data) {

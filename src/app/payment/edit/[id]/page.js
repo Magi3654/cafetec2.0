@@ -99,7 +99,7 @@ export default function EditCardPage() {
                     <span>Listado de tarjetas</span>
                 </Link>
             </div> 
-            <CardForm cards={cards} onSubmit={handleFormSubmit} />
+            <CardForm card={cards} onSubmit={handleFormSubmit} />
             <div className='max-w-md mx-auto mt-4'>
                 <div className='max-w-xs ml-auto pl-4'>
                     <DeleteButton 

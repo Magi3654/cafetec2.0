@@ -4,12 +4,13 @@ import Right from '@/components/icons/Right'
 import UserTabs from "@/components/layout/UserTabs";
 import { UseProfile } from "@/components/UseProfile";
 import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
 
 export default function PaymentPage() {
 
     const {loading, data} = UseProfile();
     const [cards, setCards] = useState([]);
+
+    console.log(cards);
 
     useEffect(() => {
         fetch('/api/payment').then(res => {
@@ -42,9 +43,7 @@ export default function PaymentPage() {
                 <div className="grid grid-cols-3 gap-2">
                     {cards?.length > 0 && cards.map(item => (
                         <Link key={item._id} href={'/payment/edit/'+item._id} className="bg-gray rounded-lg p-4">
-                            <div className="text-center">
-                                <span className="text-sm font-normal text-black">{item.name}</span>
-                            </div>
+                            <span className="text-sm font-normal text-black">Tarjeta {item.nombrePropietario}</span>
                         </Link>
                     ))}
                 </div>
