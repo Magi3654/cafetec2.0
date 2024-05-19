@@ -1,20 +1,20 @@
 'use client'
-import { UseProfile } from "@/components/UseProfile";
-import Image from "next/image";
-import UserTabs from "@/components/layout/UserTabs";
 import Link from "next/link";
 import Right from '@/components/icons/Right'
+import UserTabs from "@/components/layout/UserTabs";
+import { UseProfile } from "@/components/UseProfile";
 import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
 
-export default function MenuItemsPage(){
+export default function PaymentPage() {
 
     const {loading, data} = UseProfile();
-    const [menuItems, setMenuItems] = useState([]);
+    const [cards, setCards] = useState([]);
 
     useEffect(() => {
-        fetch('/api/menu-items').then(res => {
-            res.json().then(menuItems => {
-                setMenuItems(menuItems);
+        fetch('/api/payment').then(res => {
+            res.json().then(cards => {
+                setCards(cards);
             });
         })
     }, [])
@@ -27,25 +27,21 @@ export default function MenuItemsPage(){
         return 'No eres administrador.'; 
     }
 
-    return(
+    return (
         <section className="mt-8 max-w-lg mx-auto">
             <UserTabs isAdmin={true}/>
             <div className="mt-8 rounded-lg border border-gray shadow-md">
-                <Link href={'/menu-items/new'} className="button">
-                    Crear producto
+                <Link href={'/payment/new'} className="button">
+                    Registrar Tarjeta
                     <Right/>
                 </Link>
             </div>
 
             <div>
-                <h1 className="font-semibold text-sm mt-8 mb-2">Editar producto:</h1>
+                <h1 className="font-semibold text-sm mt-8 mb-2">Editar tarjeta:</h1>
                 <div className="grid grid-cols-3 gap-2">
-                    {menuItems?.length > 0 && menuItems.map(item => (
-                        <Link key={item._id} href={'/menu-items/edit/'+item._id} className="bg-gray rounded-lg p-4">
-                            <div className="relative">
-                                <Image src={item.image} alt={''} width={200} height={200} className="rounded-md"></Image>
-                            </div>
-
+                    {cards?.length > 0 && cards.map(item => (
+                        <Link key={item._id} href={'/payment/edit/'+item._id} className="bg-gray rounded-lg p-4">
                             <div className="text-center">
                                 <span className="text-sm font-normal text-black">{item.name}</span>
                             </div>

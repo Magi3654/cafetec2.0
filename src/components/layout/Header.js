@@ -27,6 +27,7 @@ export default function(){
             <nav className="text-center flex-1 items-center gap-4 text-lightBrown font-semibold">
                 <Link className='mx-2' href={'/'}>Home</Link>
                 <Link className='mx-2' href={'/menu'}>Menu</Link>
+                <Link className='mx-2' href={'/payment'}>Método de Pago</Link>
                 <Link className='mx-2' href={'/#about'}>About</Link>
             </nav>
             <nav className="flex items-center gap-8 font-semibold">

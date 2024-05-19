@@ -1,3 +1,5 @@
+import AddToCartButton from "@/components/layout/menu/AddToCartButton"
+
 export default function MenuItemTile({onAddToCart, ...item}) {
     const {image, description, name, basePrice, sizes, extraIngredientPrices} = item;
 
