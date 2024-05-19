@@ -40,9 +40,9 @@ export default function PaymentPage() {
 
             <div>
                 <h1 className="font-semibold text-sm mt-8 mb-2">Editar tarjeta:</h1>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="flex flex-col mx-auto">
                     {cards?.length > 0 && cards.map(item => (
-                        <Link key={item._id} href={'/payment/edit/'+item._id} className="bg-gray rounded-lg p-4">
+                        <Link key={item._id} href={'/payment/edit/'+item._id} className="bg-gray rounded-lg p-4 mb-2">
                             <span className="text-sm font-normal text-black">Tarjeta {item.nombrePropietario}</span>
                         </Link>
                     ))}
