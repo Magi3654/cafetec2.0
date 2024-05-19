@@ -74,6 +74,7 @@ export default function CardForm({onSubmit, card}) {
                             type="text"
                             placeholder="MM/AA"
                             maxLength="5"
+                            autoComplete="off"
                             value={fechaVencimiento}
                             onChange={handleChange}/>   
                     </div>
@@ -84,6 +85,8 @@ export default function CardForm({onSubmit, card}) {
                             className="input"
                             type="password"
                             placeholder="***"
+                            maxLength="3"
+                            autoComplete="off"
                             value={cvv}
                             onChange={ev => setCvv(ev.target.value)}/>   
                     </div>
@@ -93,12 +96,12 @@ export default function CardForm({onSubmit, card}) {
                 <input
                     className="input"
                     type="text"
-                    placeholder="ej. Mexico"
+                    placeholder="ej. México"
                     value={pais}
                     onChange={(e) => setPais(e.target.value)}/>
 
                 <button
-                    className="border border-gray shadow-md"
+                    className="border border-gray shadow-md mt-4"
                     type="submit"
                 >
                     Guardar
