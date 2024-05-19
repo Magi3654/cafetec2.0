@@ -4,10 +4,14 @@ import { decryptNumber } from "@/models/Cards";
 
 export default function CardForm({onSubmit, card}) {
     const [nombrePropietario, setNombrePropietario] = useState(card?.nombrePropietario || '');
-    const [numero, setNumero] = useState(card?.numero?.content || '');
+    const [numero, setNumero] = useState(card?.numero || '');
     const [fechaVencimiento, setFechaVencimiento] = useState(card?.fechaVencimiento || '');
-    const [cvv, setCvv] = useState(card?.cvv?.content || '');
+    const [cvv, setCvv] = useState(card?.cvv || '');
     const [pais, setPais] = useState(card?.pais || '');
+
+    
+    console.log(numero);
+    console.log(cvv);
 
     return (
         <form onSubmit={ev => onSubmit(ev, {nombrePropietario, numero, fechaVencimiento, cvv, pais,})}
@@ -54,7 +58,7 @@ export default function CardForm({onSubmit, card}) {
 
                 <label className="font-semibold text-sm">Pais</label>
                 <input
-                    className="shadow border border-gray rounded py-2 px-3 m-2 w-2/3 text-darkGray"
+                    className="input"
                     type="text"
                     placeholder="ej. Mexico"
                     value={pais}

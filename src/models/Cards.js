@@ -61,6 +61,7 @@ CardSchema.methods.decryptCVV = function() {
     return decrypt(this.cvv);
 }
 
+
 // Exporta la función decryptNumber
 export function decryptNumber(text) {
     return decrypt(text);
