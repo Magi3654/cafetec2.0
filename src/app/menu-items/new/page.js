@@ -18,6 +18,7 @@ export default function NewMenuItemsPage(){
 
         const savingPromise = new Promise(async (resolve, reject) => {
             const response = await fetch('/api/menu-items', {
+            
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {'Content-Type': 'application/json'},
