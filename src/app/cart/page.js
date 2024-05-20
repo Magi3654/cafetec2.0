@@ -6,10 +6,12 @@ import { useContext, useEffect, useState } from "react";
 import { UseProfile } from "@/components/UseProfile";
 import Trash from "@/components/icons/Trash";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 export default function CartPage() {
     const {cartProducts, removeCartProduct} = useContext(CartContext);
     const [address, setAddress] = useState({});
+    const [selectedCard, setSelectedCard] = useState(null);
     const {data:profileData} = UseProfile();
 
     useEffect(() => {
@@ -34,6 +36,19 @@ export default function CartPage() {
 
     function handleAddressChange(propName, value){
         setAddress(prevAddress =>  ({...prevAddress, [propName]:value}))
+    }
+
+    async function handleCompra(ev) {
+        ev.preventDefault();
+
+        if (!selectedCard) {
+            toast.error('Seleccione un método de pago');
+            return;
+        }
+
+        else {
+            toast.success('Compra realizada');
+        }
     }
 
     return (
@@ -89,14 +104,17 @@ export default function CartPage() {
                 </div>
 
                 <div className="bg-white mt-4 p-4 rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-                    <form>
+                    <form onSubmit={handleCompra}>
                         <div className="grid grid-cols-2 mx-1">
                             <h1 className="text-xl font-medium ">Total</h1>
                             <h1 className="text-right text-2xl font-semibold">${total}</h1>
                         </div>
-                        <AddressInputs adressProps={address}
-                        setAddressProps={handleAddressChange}/>
-                        <button type="submit">Pagar $ {total}</button>
+                        <AddressInputs 
+                            adressProps={address}
+                            setAddressProps={handleAddressChange}
+                            selectedCard={selectedCard}
+                            setSelectedCard={setSelectedCard}/>
+                        <button type="submit">Pagar</button>
                     </form>
                 </div>
             </div>

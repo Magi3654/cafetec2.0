@@ -5,7 +5,7 @@ import { UseProfile } from "@/components/UseProfile";
 import { useEffect, useState } from "react";
 import clsx from 'clsx'
 
-export default function AddressInputs({adressProps, setAddressProps}){
+export default function AddressInputs({adressProps, setAddressProps, selectedCard, setSelectedCard}) {
         // const {phone, streetAddress, postalCode, city,country} = adressProps;
         const [selected, setSelected] = useState(null);
         const [cards, setCards] = useState([]);
@@ -30,8 +30,8 @@ export default function AddressInputs({adressProps, setAddressProps}){
     return(
         <>
                 <Field className="my-2">
-                        <Label className="my-2 mx-1 text-sm font-medium">Metodo de pago:</Label>
-                        <Combobox value={selected} onChange={(value) => setSelected(value)}>
+                        <Label className="my-2 mx-1 text-sm font-medium">Método de pago:</Label>
+                        <Combobox value={selectedCard} onChange={setSelectedCard}>
                                 <div className="relative my-1">
                                         <CreditCardIcon className='group absolute inset-y-2 left-4 size-5 fill-black'/>
                                         <ComboboxInput
