@@ -23,7 +23,7 @@ export default function TopMenu() {
                 </h3>
                 <div className="grid grid-cols-2 gap-4 my-4"> 
                     {bestSellers?.length > 0 && bestSellers.map(item => (
-                        <MenuItem {...item} />
+                        <MenuItem key={item.name} {...item} />
                     ))}
                 </div>
             </div>
