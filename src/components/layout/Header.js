@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useContext, useState } from "react";
 
-export default function() {
+export default function Header() {
     const session = useSession();
     console.log(session);
 
