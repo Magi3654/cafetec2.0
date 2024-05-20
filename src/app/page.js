@@ -1,12 +1,14 @@
 import Header from "@/components/layout/Header";
 import SectionHeaders from "@/components/layout/SectionHeaders";
 import Hero from "@/components/layout/Hero";
+import Categories from "@/components/layout/Categories"
 import TopMenu from "@/components/layout/TopMenu";
 
 export default function Home() {
   return (
     <div className="flex flex-col">
     <Hero/>
+    <Categories/>
     <TopMenu/>
     <section className="text-center my-16" id="about">
       <SectionHeaders subHeader={'Nuestra historia'} mainHeader={'Sobre nosotros'} />
