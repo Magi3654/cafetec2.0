@@ -1,28 +1,33 @@
 'use client'
-import { useState } from "react";
-import { CheckIcon, ChevronDownIcon } from "@heroicons/react/20/solid"
-import clsx from 'clsx'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions, Transition, Field, Label } from '@headlessui/react'
-
-const people = [
-        { id: 1, name: 'Tom Cook' },
-        { id: 2, name: 'Wade Cooper' },
-        { id: 3, name: 'Tanya Fox' },
-        { id: 4, name: 'Arlene Mccoy' },
-        { id: 5, name: 'Devon Webb' },
-];
+import { CheckIcon, ChevronDownIcon } from "@heroicons/react/20/solid"
+import { UseProfile } from "@/components/UseProfile";
+import { useEffect, useState } from "react";
+import clsx from 'clsx'
 
 export default function AddressInputs({adressProps, setAddressProps}){
         const {phone, streetAddress, postalCode, city,country} = adressProps;
-        const [selected, setSelected] = useState(people[0]);
+        const [selected, setSelected] = useState(null);
+        const [cards, setCards] = useState([]);
         const [query, setQuery] = useState('');
+        const {loading, data} = UseProfile();
 
-        const filteredPeople = query === ''
-                ? people
-                : people.filter((person) => {
-                        return person.name.toLowerCase().includes(query.toLowerCase())
+        console.log(cards);
+        console.log(selected);
+
+        useEffect(() => {
+                fetch('/api/payment').then(res => {
+                res.json().then(cards => {
+                        setCards(cards);
+                });
                 })
-    
+        }, [])
+
+        const filteredCards = query === '' 
+        ? cards 
+        : cards.filter((card) => card.nombrePropietario.toLowerCase().includes(query.toLowerCase()));
+
+
     return(
         <>
                 <Field className="my-2">
@@ -31,10 +36,10 @@ export default function AddressInputs({adressProps, setAddressProps}){
                                 <div className="relative my-1">
                                         <ComboboxInput
                                                 className={clsx(
-                                                'w-full rounded-lg border-none bg-gray py-1.5 pr-8 pl-3 text-sm/6 text-black',
+                                                'w-full rounded-lg bg-gray py-1.5 pr-8 pl-3 text-md text-black',
                                                 'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
                                                 )}
-                                                displayValue={(person) => person?.name}
+                                                displayValue={(card) => card?.nombrePropietario || ''}
                                                 onChange={(event) => setQuery(event.target.value)}
                                         />
                                         <ComboboxButton className="group absolute inset-y-0 -right-32 md:-right-36 lg:-right-40 px-2.5">
@@ -50,18 +55,41 @@ export default function AddressInputs({adressProps, setAddressProps}){
 
                                         <ComboboxOptions
                                                 anchor="bottom"
-                                                className="w-[var(--input-width)] rounded-xl border border-slate-100 bg-slate-100 p-1 [--anchor-gap:var(--spacing-1)] empty:hidden"
+                                                className="w-[var(--input-width)] rounded-xl bg-slate-100 p-1 [--anchor-gap:var(--spacing-1)] empty:hidden"
                                         >
-                                                {filteredPeople.map((person) => (
-                                                        <ComboboxOption
-                                                                key={person.id}
-                                                                value={person}
-                                                                className="group flex cursor-default border-b border-slate-200 items-center gap-2 py-1.5 px-3 select-none data-[focus]:bg-white/10"
-                                                        >
-                                                                <CheckIcon className="invisible size-4 fill-yellow group-data-[selected]:visible" />
-                                                                <div className="text-sm/6 text-black font-medium group-data-[selected]:font-bold">{person.name}</div>
-                                                        </ComboboxOption>
-                                                ))}
+                                                {filteredCards.length === 0 && query !== '' ? (
+                                                        <div className='text-md font-medium'> 
+                                                                Sin resultados
+                                                        </div>
+                                                ) : (
+                                                        filteredCards.map((card) => (
+                                                                <ComboboxOption
+                                                                        key={card.id}
+                                                                        value={card}
+                                                                        className={({active}) =>
+                                                                                `cursor-default border-b border-slate-200 select-none relative py-2 pl-10 pr-4 ${
+                                                                                        active ? 'text-black font-semibold ' : 'text-black'
+                                                                                }`
+                                                                        }
+                                                                >
+                                                                        {({selected, active}) => (
+                                                                                <>
+                                                                                        <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
+                                                                                                {card.nombrePropietario}
+                                                                                        </span>
+
+                                                                                        {selected && (
+                                                                                                <span  className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                                                                                                        active ? 'text-yellow' : 'text-white'}`}
+                                                                                                >
+                                                                                                        <CheckIcon className='h-5 w-5' aria-hidden='true' />
+                                                                                                </span>
+                                                                                        )}
+                                                                                </>
+                                                                        )}
+                                                                </ComboboxOption>
+                                                        ))
+                                                )}
                                         </ComboboxOptions>
                                 </Transition>
                         </Combobox>
