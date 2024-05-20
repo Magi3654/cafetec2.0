@@ -41,7 +41,7 @@ export default function CartPage() {
             <div className="text-center">
                 <SectionHeaders mainHeader="Cart"/>
             </div>
-            <div className=" mt-8 grid gap-8 grid-cols-2">
+            <div className="mt-8 md:grid md:gap-8 md:grid-cols-2 flex flex-col">
                 <div>
                     {cartProducts?.length === 0 && (
                         <div>Carrito vacio</div>
@@ -86,15 +86,14 @@ export default function CartPage() {
                         </div>
                     ))}
 
-                    <div className="py-2 text-right pr-16">
-                        <span className="textsemiGray">Total:</span>
-                        <span className="text-lg font-semibold pl-2">$ {total} </span> 
-                    </div>
                 </div>
 
-                <div className="bg-gray p-4 rounded-lg">
-                    <h2>Pagar Pedido</h2>
+                <div className="bg-white mt-4 p-4 rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
                     <form>
+                        <div className="grid grid-cols-2 mx-1">
+                            <h1 className="text-xl font-medium ">Total</h1>
+                            <h1 className="text-right text-2xl font-semibold">${total}</h1>
+                        </div>
                         <AddressInputs adressProps={address}
                         setAddressProps={handleAddressChange}/>
                         <button type="submit">Pagar $ {total}</button>

@@ -21,7 +21,6 @@ export default function RootLayout({ children }) {
             <Toaster></Toaster>
             <Header/>
             {children}
-            
             <Navbar/>
           </AppProvider>
         </main>

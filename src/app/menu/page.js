@@ -21,7 +21,7 @@ export default function MenuPage() {
         <section className="mt-8">
             {categories?.length > 0 && categories.map(c => (
                 <div>
-                    <div className="text-center">
+                    <div className="text-center italic">
                         <SectionHeaders mainHeader={c.name} />
                     </div>
                     <div className="grid grid-cols-3 gap-4 mt-6 mb-12">
