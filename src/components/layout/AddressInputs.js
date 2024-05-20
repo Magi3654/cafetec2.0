@@ -30,9 +30,9 @@ export default function AddressInputs({adressProps, setAddressProps, selectedCar
     return(
         <>
                 <Field className="my-2">
-                        <Label className="my-2 mx-1 text-sm font-medium">Método de pago:</Label>
+                        <Label className="my-3 mx-1 text-sm font-semibold">Método de pago:</Label>
                         <Combobox value={selectedCard} onChange={setSelectedCard}>
-                                <div className="relative my-1">
+                                <div className="relative my-2 mb-4">
                                         <CreditCardIcon className='group absolute inset-y-2 left-4 size-5 fill-black'/>
                                         <ComboboxInput
                                                 className={clsx(

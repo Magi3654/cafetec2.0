@@ -43,7 +43,7 @@ button, .button {
 }
 
 button[type="submit"], .submit{
-    @apply border-0 rounded-full shadow-lg text-xl font-semibold bg-lightBrown text-white;
+    @apply border-0 my-2 rounded-full shadow-lg text-xl font-semibold bg-lightBrown text-white;
 }
 button [type="submit"]:disabled, .submit.submit:disabled{
     @apply cursor-not-allowed bg-yellow;
