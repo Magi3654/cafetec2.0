@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     --navbar-height: 4rem; /* Ajusta este valor según la altura de tu navbar */
 }

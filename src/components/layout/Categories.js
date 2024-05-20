@@ -12,6 +12,7 @@ export default function Categories() {
             res.json().then(categories => setCategories(categories));
         });
     }, [])
+    
 
     return (
         <section className="my-3">
@@ -28,9 +29,11 @@ export default function Categories() {
             </div>
             <div className="flex mx-auto overflow-x-auto py-2">
                 {categories?.length > 0 && categories.map(c => (
-                    <button className="bg-yellow rounded-full px-2 py-4 mx-2 text-sm whitespace-nowrap">
-                        <span>{c.name}</span>
-                    </button>
+                    <Link key={c.name} href={`/menu#${c.name.replace(/\s+/g, '-')}`} className="mx-2">
+                        <button className="bg-yellow rounded-full px-2 py-4 mx-2 font-semibold text-sm whitespace-nowrap">
+                            <span className="px-1">{c.name}</span>
+                        </button>
+                    </Link>
                 ))}
             </div>
         </section>

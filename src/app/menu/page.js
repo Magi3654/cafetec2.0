@@ -1,11 +1,14 @@
 'use client'
 import SectionHeaders from "@/components/layout/SectionHeaders";
 import MenuItem from "@/components/layout/menu/MenuItem";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useEffect } from "react";
 
 export default function MenuPage() {
+    
     const [categories, setCategories] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
     const [menuItems, setMenuItems] = useState([]);
 
     useEffect(() => {
@@ -17,16 +20,34 @@ export default function MenuPage() {
         });
     }, [])
 
+    useEffect(() => {
+        if (categories.length > 0 && menuItems.length > 0) {
+            setIsLoaded(true);
+        }
+    }, [categories, menuItems]);
+
+    useEffect(() => {
+        if (isLoaded) {
+            const hash = window.location.hash;
+            if (hash) {
+                const element = document.getElementById(hash.replace('#', ''));
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+    }, [isLoaded]);
+
     return (
         <section className="mt-8">
             {categories?.length > 0 && categories.map(c => (
-                <div>
-                    <div className="text-center italic">
+                <div key={c._id}>
+                    <div id={c.name.replace(/\s+/g, '-')} className="text-center italic">
                         <SectionHeaders mainHeader={c.name} />
                     </div>
                     <div className="grid grid-cols-3 gap-4 mt-6 mb-12">
                         {menuItems.filter(item => item.category === c._id).map(item => (
-                            <MenuItem {...item}/>
+                            <MenuItem key={item._id} {...item}/>
                         ))}
                     </div>
                 </div>
