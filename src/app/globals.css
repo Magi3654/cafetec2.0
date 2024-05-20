@@ -55,3 +55,11 @@ div.tabs> *.active{
     @apply bg-lightBrown shadow-md text-white font-semibold rounded-full py-2 px-4
 }
 
+.navbar {
+    @apply flex flex-col mx-2 items-center;
+}
+
+.activeIcon {
+    @apply flex flex-col mx-2 items-center text-lightBrown font-semibold
+}
+
