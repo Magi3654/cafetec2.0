@@ -16,12 +16,12 @@ export default function TopMenu() {
     }, []);
 
     return(
-        <section className="flex border-t border-gray">
+        <section className="flex border-t my-3 border-gray">
             <div className="text-justify">
-                <h3 className="font-bold text-2xl my-2 leading-12 ">
+                <h3 className="font-bold text-2xl my-3 leading-12 ">
                     Lo más popular
                 </h3>
-                <div className="grid grid-cols-3 gap-4"> 
+                <div className="grid grid-cols-2 gap-4 my-4"> 
                     {bestSellers?.length > 0 && bestSellers.map(item => (
                         <MenuItem {...item} />
                     ))}
