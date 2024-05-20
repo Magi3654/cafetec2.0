@@ -42,10 +42,10 @@ export default function MenuPage() {
         <section className="mt-8">
             {categories?.length > 0 && categories.map(c => (
                 <div key={c._id}>
-                    <div id={c.name.replace(/\s+/g, '-')} className="text-center italic">
+                    <div id={c.name.replace(/\s+/g, '-')} className="text-center ">
                         <SectionHeaders mainHeader={c.name} />
                     </div>
-                    <div className="grid grid-cols-3 gap-4 mt-6 mb-12">
+                    <div className="grid grid-flow-col gap-4 mt-6 mb-10">
                         {menuItems.filter(item => item.category === c._id).map(item => (
                             <MenuItem key={item._id} {...item}/>
                         ))}

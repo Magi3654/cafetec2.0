@@ -17,6 +17,9 @@ module.exports = {
         darkGray: '#6c757d',
         babyYellow: '#ffee9d',
       },
+      gridAutoColumns:{
+        '2fr': 'minmax(0, 2fr)',
+      }
     },
   },
   plugins: [],
