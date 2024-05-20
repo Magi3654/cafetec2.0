@@ -3,6 +3,7 @@ import Navbar from "@/components/layout/Navbar"
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import {AppProvider} from "@/components/AppContext"
+import Link from "next/link";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,6 +16,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/favicon.ico/" type="image/x-icon" sizes="32x32"/>
+      </head>
       <body className={inter.className}>
         <main className="mx-auto p-4 lg:max-w-4xl pb-[var(--navbar-height)]"> 
           <AppProvider>
