@@ -64,7 +64,7 @@ export default function CartPage() {
                     )}
 
                     {cartProducts?.length > 0 && cartProducts.map((product, index) => (
-                        <div className="flex items-center gap-4 my-3 py-4 px-2 rounded-lg shadow-lg shadow-slate-300">
+                        <div key={product.id || index} className="flex items-center gap-4 my-3 py-4 px-2 rounded-lg shadow-lg shadow-slate-300">
                             <div className="w-24">
                                 <Image width={240} height={240} src={product.image} alt={''}/>
                             </div>
@@ -80,7 +80,7 @@ export default function CartPage() {
                                 {product.extras?.length >0 && (
                                     <div className="text-sm font-semibold text-darkGray">
                                         Extras: {product.extras.map(extra => (
-                                            <div className="font-normal">{extra.name} ${extra.price}</div>
+                                            <div key={extra.name} className="font-normal">{extra.name} ${extra.price}</div>
                                         ))}
                                     </div>
                                 )}

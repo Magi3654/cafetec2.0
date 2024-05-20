@@ -132,7 +132,7 @@ export default function CategoriesPage(){
             <div>
                 <h2 className="mt-8 mb-2 font-semibold text-sm">Listado de categorías:</h2>
                 {categories?.length > 0 && categories.map(c => (
-                    <div className="bg-gray border-semiGray shadow-md text-sm items-center rounded-md p-2 px-4 flex gap-1 mb-2">
+                    <div key={c.name} className="bg-gray border-semiGray shadow-md text-sm items-center rounded-md p-2 px-4 flex gap-1 mb-2">
                         <div className="grow font-normal text-black">{c.name}</div>
 
                         <div className="flex gap-1">

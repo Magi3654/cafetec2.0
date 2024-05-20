@@ -44,7 +44,7 @@ export default function MenuItemPriceProps({name, addLabel, props, setProps}) {
                 
             <div className={isOpen ? 'block' : 'hidden'}>
                 {props?.length > 0 && props.map((size, index) => (
-                    <div className="flex items-end gap-2 my-3">
+                    <div key={size._id || index} className="flex items-end gap-2 my-3">
                         <div>
                             <label className="font-semibold text-xs">Nombre</label>
                             <input  type="text"
