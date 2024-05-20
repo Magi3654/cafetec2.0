@@ -1,12 +1,12 @@
 'use client'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOption, ComboboxOptions, Transition, Field, Label } from '@headlessui/react'
-import { CheckIcon, ChevronDownIcon } from "@heroicons/react/20/solid"
+import { CheckIcon, ChevronDownIcon, CreditCardIcon } from "@heroicons/react/20/solid"
 import { UseProfile } from "@/components/UseProfile";
 import { useEffect, useState } from "react";
 import clsx from 'clsx'
 
 export default function AddressInputs({adressProps, setAddressProps}){
-        const {phone, streetAddress, postalCode, city,country} = adressProps;
+        // const {phone, streetAddress, postalCode, city,country} = adressProps;
         const [selected, setSelected] = useState(null);
         const [cards, setCards] = useState([]);
         const [query, setQuery] = useState('');
@@ -27,23 +27,23 @@ export default function AddressInputs({adressProps, setAddressProps}){
         ? cards 
         : cards.filter((card) => card.nombrePropietario.toLowerCase().includes(query.toLowerCase()));
 
-
     return(
         <>
                 <Field className="my-2">
                         <Label className="my-2 mx-1 text-sm font-medium">Metodo de pago:</Label>
                         <Combobox value={selected} onChange={(value) => setSelected(value)}>
                                 <div className="relative my-1">
+                                        <CreditCardIcon className='group absolute inset-y-2 left-4 size-5 fill-black'/>
                                         <ComboboxInput
                                                 className={clsx(
-                                                'w-full rounded-lg bg-gray py-1.5 pr-8 pl-3 text-md text-black',
+                                                'w-full rounded-lg bg-gray py-1.5 pr-8 pl-12 text-md text-black',
                                                 'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
                                                 )}
                                                 displayValue={(card) => card?.nombrePropietario || ''}
                                                 onChange={(event) => setQuery(event.target.value)}
                                         />
-                                        <ComboboxButton className="group absolute inset-y-0 -right-32 md:-right-36 lg:-right-40 px-2.5">
-                                                <ChevronDownIcon className="size-5 fill-black" />
+                                        <ComboboxButton className="group absolute inset-y-0 left-1 justify-end">
+                                                <ChevronDownIcon className="size-6 fill-black" />
                                         </ComboboxButton>
                                 </div>
                                 <Transition
