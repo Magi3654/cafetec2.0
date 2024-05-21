@@ -22,7 +22,6 @@ export default function UserForm({user, onSave}) {
         if(propName === 'postalCode') setPostalCode(value);
         if(propName === 'city') setCity(value);
         if(propName === 'country') setCountry(value);
-
     }
 
 
@@ -65,7 +64,7 @@ export default function UserForm({user, onSave}) {
                         <div>
                             <label className="p-2 inline-flex items-center gap-2 mb-2" htmlFor="adminCb">
                                 <input id="adminCb" type="checkbox" className="mr-2"
-                                    value={'1'} checked={admin} onClick={ev => setAdmin(ev.target.checked)}
+                                    value={'1'} checked={admin} onChange={ev => setAdmin(ev.target.checked)}
                                 />
                                 <span>Admin</span>
                             </label>

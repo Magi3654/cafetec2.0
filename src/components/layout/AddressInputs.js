@@ -58,7 +58,7 @@ export default function AddressInputs({adressProps, setAddressProps, selectedCar
                                                 className="w-[var(--input-width)] rounded-xl bg-slate-100 p-1 [--anchor-gap:var(--spacing-1)] empty:hidden"
                                         >
                                                 {filteredCards.length === 0 && query !== '' ? (
-                                                        <div className='text-md font-medium'> 
+                                                        <div key="no-results" className='text-md font-medium'> 
                                                                 Sin resultados
                                                         </div>
                                                 ) : (
