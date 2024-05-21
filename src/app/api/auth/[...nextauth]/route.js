@@ -32,12 +32,14 @@ export const authOptions = {
             const user = await User.findOne({email});
             console.log('correo encontrado')
 
+            /*
             const salt = bcrypt.genSaltSync(10);
             
             const hashPassword = bcrypt.hashSync(password.toString(), salt);
             console.log("hashusuario " + hashPassword)
             console.log("hashbasededatos "+ user.password)
-            const passwordOk = user && bcrypt.compareSync(hashPassword, user.password) 
+            */
+            const passwordOk = user && bcrypt.compareSync(password, user.password) 
             console.log(passwordOk)
 
             console.log({password});
@@ -51,6 +53,22 @@ export const authOptions = {
           }
       })
   ],
+};
+
+export async function isAdmin() {
+  const session = await getServerSession(authOptions);
+  const userEmail = session?.user?.email;
+
+  if (!userEmail) {
+    return false;
+  }
+  const userInfo = await UserInfo.findOne({email:userEmail});
+
+  if (!userInfo) {
+    return false;
+  }
+
+  return userInfo.admin;
 }
 
 const handler = NextAuth(authOptions)
