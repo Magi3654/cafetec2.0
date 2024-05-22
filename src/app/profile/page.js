@@ -1,9 +1,8 @@
 'use client'
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
-import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import UserTabs from "../../components/layout/UserTabs";
 import UserForm from "../../components/layout/UserForm";
 

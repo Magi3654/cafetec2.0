@@ -4,30 +4,26 @@ import { usePathname } from "next/navigation"
 
 
 export default function UserTabs({isAdmin}){
-     const path = usePathname();
+    const path = usePathname();
     return(
-        <div className="flex mx-auto gap-2 tabs justify-center">
+        <div className="tabs">
                 <Link 
-                className={path === '/profile'? 'active':''} 
+                className={path === '/profile'? 'active': 'tab'} 
                 href={'/profile'}>
                 Perfil
                 </Link>
                 {isAdmin &&(
                     <>
-                        <Link href={'/categories'} className = {path === '/categories' ? 'active' : ''}>
+                        <Link href={'/categories'} className = {path === '/categories' ? 'active' : 'tab'}>
                             Categorías
                         </Link>
 
-                        <Link href={'/menu-items'} className = {path.includes('menu-items') ? 'active' : ''}>
+                        <Link href={'/menu-items'} className = {path.includes('menu-items') ? 'active' : 'tab'}>
                             Productos
                         </Link>
 
-                        <Link href={'/users'} className = {path.includes('/users')  ? 'active' : ''}>
+                        <Link href={'/users'} className = {path.includes('/users')  ? 'active' : 'tab'}>
                             Usuarios
-                        </Link>
-                        
-                        <Link href={'/orders'} className = {path === '/orders' ? 'active' : ''}>
-                            Pedidos
                         </Link>
                     </>
                 )}
